@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome | Pacific Rim Intro</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;600&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: #030712;
+            color: #ffffff;
+            font-family: 'Kanit', sans-serif;
+            width: 100vw;
+            height: 100vh;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .intro-header {
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .intro-header h1 {
+            color: #00f0ff;
+            font-size: 28px;
+            font-weight: 600;
+            letter-spacing: 3px;
+            text-shadow: 0 0 20px #00f0ff;
+            margin-bottom: 5px;
+        }
+
+        .intro-header p {
+            color: #94a3b8;
+            font-size: 15px;
+        }
+
+        .intro-container {
+            position: relative;
+            width: 85%;
+            max-width: 960px;
+            aspect-ratio: 16 / 9;
+            border: 2px solid #00f0ff;
+            border-radius: 16px;
+            box-shadow: 0 0 40px rgba(0, 240, 255, 0.4), inset 0 0 20px rgba(0, 240, 255, 0.2);
+            overflow: hidden;
+            background: #000;
+        }
+
+        .intro-video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .intro-actions {
+            margin-top: 25px;
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .enter-btn {
+            padding: 12px 40px;
+            background: linear-gradient(135deg, #00f0ff, #0055ff);
+            color: #ffffff;
+            border: none;
+            border-radius: 30px;
+            font-size: 18px;
+            font-family: 'Kanit', sans-serif;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 0 25px rgba(0, 240, 255, 0.6);
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .enter-btn:hover {
+            transform: scale(1.06);
+            box-shadow: 0 0 40px rgba(0, 240, 255, 1);
+            background: linear-gradient(135deg, #ff0055, #00f0ff);
+        }
+
+        .sound-toggle-btn {
+            padding: 12px 22px;
+            background: rgba(15, 23, 42, 0.85);
+            border: 1px solid #00f0ff;
+            color: #00f0ff;
+            border-radius: 30px;
+            font-size: 15px;
+            font-family: 'Kanit', sans-serif;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .sound-toggle-btn:hover {
+            background: #00f0ff;
+            color: #0a0f19;
+            box-shadow: 0 0 15px #00f0ff;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="intro-header">
+        <h1>⚡ WELCOME TO PORTFOLIO</h1>
+        <p>เว็บไซต์โครงงานคอมพิวเตอร์ ชั้นมัธยมศึกษาปีที่ 3</p>
+    </div>
+
+    <div class="intro-container">
+        <!-- รองรับไฟล์ทั้งแบบเปลี่ยนชื่อเป็น intro.mp4 หรือใช้ชื่อเดิม -->
+        <video id="introVideo" class="intro-video" autoplay muted playsinline controls>
+            <source src="intro.mp4" type="video/mp4">
+            <source src="Pacific Rim __ Cool For The Summer __ (EDIT) 4K.mp4" type="video/mp4">
+            เบราว์เซอร์ของคุณไม่รองรับการเล่นวิดีโอนี้
+        </video>
+    </div>
+
+    <div class="intro-actions">
+        <button class="sound-toggle-btn" id="soundToggleBtn">🔊 เปิดเสียงเพลง</button>
+        <button class="enter-btn" id="enterSiteBtn">เข้าสู่เว็บไซต์ →</button>
+    </div>
+
+    <script>
+        const introVideo = document.getElementById('introVideo');
+        const enterSiteBtn = document.getElementById('enterSiteBtn');
+        const soundToggleBtn = document.getElementById('soundToggleBtn');
+
+        // ฟังก์ชันย้ายไปหน้าหลัก index.html
+        function goToMainSite() {
+            window.location.href = 'index.html';
+        }
+
+        // เล่นวิดีโออัตโนมัติเมื่อโหลดหน้า
+        window.addEventListener('DOMContentLoaded', () => {
+            introVideo.play().catch(err => {
+                console.log("Autoplay Notice:", err);
+            });
+        });
+
+        // เมื่อวิดีโอจบ ให้ย้ายไปหน้า index.html ทันที
+        introVideo.addEventListener('ended', () => {
+            goToMainSite();
+        });
+
+        // กดปุ่มเข้าสู่เว็บไซต์
+        enterSiteBtn.addEventListener('click', () => {
+            goToMainSite();
+        });
+
+        // ควบคุมการ เปิด/ปิด เสียง
+        soundToggleBtn.addEventListener('click', () => {
+            if (introVideo.muted) {
+                introVideo.muted = false;
+                soundToggleBtn.innerHTML = '🔇 ปิดเสียง';
+                soundToggleBtn.style.background = '#00f0ff';
+                soundToggleBtn.style.color = '#0a0f19';
+            } else {
+                introVideo.muted = true;
+                soundToggleBtn.innerHTML = '🔊 เปิดเสียงเพลง';
+                soundToggleBtn.style.background = 'rgba(15, 23, 42, 0.85)';
+                soundToggleBtn.style.color = '#00f0ff';
+            }
+        });
+    </script>
+</body>
+</html>
