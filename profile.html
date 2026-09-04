@@ -3,82 +3,98 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ประวัติส่วนตัว - Student Portfolio</title>
+    <title>ประวัติส่วนตัว - Student Portfolio M.3</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
 
-    <!-- Navigation Bar -->
-    <header class="navbar">
-        <div class="nav-container">
-            <a href="index.html" class="logo">PORTFOLIO<span>.M3</span></a>
-            <nav class="nav-menu">
-                <a href="index.html" class="nav-link">หน้าแรก</a>
-                <a href="profile.html" class="nav-link active">ประวัติส่วนตัว</a>
-                <a href="education.html" class="nav-link">การศึกษา</a>
-                <a href="hobby.html" class="nav-link">งานอดิเรก</a>
-                <a href="contact.html" class="nav-link">ติดต่อ</a>
-            </nav>
-        </div>
+    <!-- Header Navigation -->
+    <header class="navbar-container">
+        <nav class="navbar">
+            <a href="index.html" class="logo">
+                <span class="logo-badge">M.3</span> Portfolio
+            </a>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">หน้าแรก</a></li>
+                <li><a href="profile.html" class="nav-link active">ประวัติส่วนตัว</a></li>
+                <li><a href="education.html" class="nav-link">การศึกษา</a></li>
+                <li><a href="hobby.html" class="nav-link">งานอดิเรก</a></li>
+                <li><a href="contact.html" class="nav-link">ติดต่อ</a></li>
+            </ul>
+        </nav>
     </header>
 
-    <!-- Main Content -->
-    <main class="page-container">
-        <div class="section-title">
-            <h2>ประวัติส่วนตัว</h2>
-            <p>Personal Profile</p>
+    <main class="container section">
+        <div class="page-header">
+            <h1 class="page-title">ประวัติส่วนตัว</h1>
+            <p class="page-subtitle">Personal Information & About Me</p>
         </div>
 
-        <div class="profile-grid">
-            <!-- Left Side: Card Image -->
-            <div class="profile-card-left">
-                <img src="https://placehold.co/350x450/1976d2/ffffff?text=My+Photo" alt="รูปโปรไฟล์ของฉัน" class="profile-page-img">
-                <div class="profile-badge-name">
-                    <h3>[กรอกชื่อ]</h3>
-                    <p>นักเรียนมัธยมศึกษาปีที่ 3</p>
+        <div class="profile-asymmetric-layout">
+            <!-- Sticky Sidebar Profile -->
+            <aside class="profile-sticky-card">
+                <div class="profile-image-container">
+                    <img src="https://placehold.co/350x350/1976d2/ffffff?text=Profile+Image" alt="รูปโปรไฟล์ของฉัน" class="profile-img-lg">
                 </div>
-            </div>
+                <h2>[กรอกชื่อ-นามสกุล]</h2>
+                <span class="badge-pill">ชื่อเล่น: [กรอกชื่อเล่น]</span>
+                <div class="sticky-info-list">
+                    <div class="info-item"><span>🎂 วันเกิด:</span> [กรอกวันเกิด]</div>
+                    <div class="info-item"><span>⌛ อายุ:</span> [กรอกอายุ] ปี</div>
+                    <div class="info-item"><span>📍 จังหวัด:</span> [กรอกจังหวัด]</div>
+                </div>
+            </aside>
 
-            <!-- Right Side: Details -->
-            <div class="profile-details">
-                <div class="info-card">
-                    <h3>📌 ข้อมูลทั่วไป</h3>
-                    <div class="info-grid">
-                        <div class="info-item">
-                            <span class="label">ชื่อ-นามสกุล:</span>
-                            <span class="value">[กรอกชื่อ] [กรอกนามสกุล]</span>
-                        </div>
-                        <div class="info-item">
-                            <span class="label">ชื่อเล่น:</span>
-                            <span class="value">[กรอกชื่อเล่น]</span>
-                        </div>
-                        <div class="info-item">
-                            <span class="label">อายุ:</span>
-                            <span class="value">[กรอกอายุ] ปี</span>
-                        </div>
-                        <div class="info-item">
-                            <span class="label">วันเกิด:</span>
-                            <span class="value">[กรอกวันเกิด]</span>
-                        </div>
-                        <div class="info-item">
-                            <span class="label">จังหวัด:</span>
-                            <span class="value">[กรอกจังหวัด]</span>
-                        </div>
-                        <div class="info-item">
-                            <span class="label">โรงเรียน:</span>
-                            <span class="value">[กรอกชื่อโรงเรียน]</span>
-                        </div>
+            <!-- Main Profile Content -->
+            <section class="profile-content-stack">
+                <div class="content-card">
+                    <h2>📝 เกี่ยวกับฉัน (About Me)</h2>
+                    <p class="bio-paragraph">
+                        สวัสดีครับ/ค่ะ ฉันเป็นนักเรียนชั้นมัธยมศึกษาปีที่ 3 ที่มีความมุ่งมั่นในการศึกษาและชอบเรียนรู้สิ่งใหม่ๆ อยู่เสมอ โดยเฉพาะทางด้านคอมพิวเตอร์และเทคโนโลยี ฉันชอบความท้าทายในการแก้ปัญหา และการนำความรู้มาประยุกต์ใช้สร้างสรรค์ผลงานชิ้นต่างๆ
+                    </p>
+                </div>
+
+                <div class="content-card">
+                    <h2>📋 ข้อมูลส่วนตัวโดยละเอียด</h2>
+                    <div class="table-responsive">
+                        <table class="styled-table">
+                            <tr>
+                                <th>ชื่อ-นามสกุล</th>
+                                <td>[กรอกชื่อ-นามสกุล]</td>
+                            </tr>
+                            <tr>
+                                <th>ระดับชั้น</th>
+                                <td>มัธยมศึกษาปีที่ 3/[กรอกห้อง]</td>
+                            </tr>
+                            <tr>
+                                <th>โรงเรียน</th>
+                                <td>[กรอกชื่อโรงเรียน]</td>
+                            </tr>
+                            <tr>
+                                <th>วิชาที่ชอบ</th>
+                                <td>[กรอกวิชาที่ชอบ]</td>
+                            </tr>
+                            <tr>
+                                <th>ความสนใจพิเศษ</th>
+                                <td>[กรอกความสนใจ]</td>
+                            </tr>
+                        </table>
                     </div>
                 </div>
 
-                <div class="info-card">
-                    <h3>💡 เกี่ยวกับฉัน</h3>
-                    <p class="about-text">
-                        สวัสดีครับ! ผมเป็นนักเรียนชั้น ม.3 ที่ชอบตั้งคำถามและค้นหาความรู้ใหม่ๆ อยู่เสมอ โดยเฉพาะเรื่องการใช้งานคอมพิวเตอร์และการดีไซน์ ผมเชื่อว่าเทคโนโลยีสามารถสร้างสรรค์สิ่งดีๆ ให้กับสังคมได้ ในเวลาว่างผมชอบศึกษาทักษะใหม่ๆ เพื่อเตรียมความพร้อมสำหรับการเรียนในระดับที่สูงขึ้น
-                    </p>
+                <div class="content-card">
+                    <h2>⭐ จุดเด่น & ความสามารถ</h2>
+                    <div class="skills-grid">
+                        <div class="skill-chip">💡 คิดวิเคราะห์แก้ปัญหา</div>
+                        <div class="skill-chip">💻 พื้นฐาน HTML / CSS</div>
+                        <div class="skill-chip">🎨 ออกแบบเว็บไซต์เบื้องต้น</div>
+                        <div class="skill-chip">🤝 การทำงานเป็นทีม</div>
+                    </div>
                 </div>
-            </div>
+            </section>
         </div>
     </main>
 
@@ -86,19 +102,23 @@
     <footer class="footer">
         <div class="container footer-content">
             <div class="footer-info">
-                <h3>PORTFOLIO<span>.M3</span></h3>
-                <p>โครงงานวิชาคอมพิวเตอร์ ชั้นมัธยมศึกษาปีที่ 3</p>
+                <h3>Portfolio.M3</h3>
+                <p>โครงงานวิชาคอมพิวเตอร์ - ชั้นมัธยมศึกษาปีที่ 3</p>
+                <p>จัดทำโดย: [กรอกชื่อ-นามสกุล] ชั้น ม.3/[กรอกห้อง]</p>
             </div>
             <div class="footer-links">
-                <a href="index.html">หน้าแรก</a>
-                <a href="profile.html">ประวัติส่วนตัว</a>
-                <a href="education.html">การศึกษา</a>
-                <a href="hobby.html">งานอดิเรก</a>
-                <a href="contact.html">ติดต่อ</a>
+                <h4>เมนูด่วน</h4>
+                <ul>
+                    <li><a href="index.html">หน้าแรก</a></li>
+                    <li><a href="profile.html">ประวัติส่วนตัว</a></li>
+                    <li><a href="education.html">การศึกษา</a></li>
+                    <li><a href="hobby.html">งานอดิเรก</a></li>
+                    <li><a href="contact.html">ติดต่อ</a></li>
+                </ul>
             </div>
         </div>
         <div class="footer-bottom">
-            <p>&copy; 2026 Student Portfolio. All Rights Reserved.</p>
+            <p>&copy; 2026 Student Portfolio Project. All Rights Reserved.</p>
         </div>
     </footer>
 
