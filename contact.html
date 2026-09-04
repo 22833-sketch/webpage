@@ -1,90 +1,83 @@
 <!DOCTYPE html>
 <html lang="th">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ติดต่อ | Student Portfolio M.3</title>
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ติดต่อ - Student Portfolio</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
 
-  <!-- Navigation Bar -->
-  <header class="navbar">
-    <div class="nav-container">
-      <a href="index.html" class="nav-logo">
-        <span class="logo-badge">M.3</span>
-        PORTFOLIO
-      </a>
-      <nav class="nav-menu">
-        <a href="index.html" class="nav-link">หน้าแรก</a>
-        <a href="profile.html" class="nav-link">ประวัติส่วนตัว</a>
-        <a href="education.html" class="nav-link">การศึกษา</a>
-        <a href="hobby.html" class="nav-link">งานอดิเรก</a>
-        <a href="contact.html" class="nav-link active">ติดต่อ</a>
-      </nav>
-    </div>
-  </header>
+    <!-- Navigation Bar -->
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">PORTFOLIO<span>.M3</span></a>
+            <nav class="nav-menu">
+                <a href="index.html" class="nav-link">หน้าแรก</a>
+                <a href="profile.html" class="nav-link">ประวัติส่วนตัว</a>
+                <a href="education.html" class="nav-link">การศึกษา</a>
+                <a href="hobby.html" class="nav-link">งานอดิเรก</a>
+                <a href="contact.html" class="nav-link active">ติดต่อ</a>
+            </nav>
+        </div>
+    </header>
 
-  <main class="container section">
-    <div class="section-header">
-      <h2>ช่องทางการติดต่อ</h2>
-      <p>Get in Touch with Me</p>
-    </div>
-
-    <!-- Contact Grid Container -->
-    <div class="contact-wrapper">
-      <div class="card contact-cta-card">
-        <h3>สามารถติดต่อฉันได้ที่</h3>
-        <p>หากมีข้อสงสัย แลกเปลี่ยนความรู้ หรือต้องการพูดคุยเกี่ยวกับโครงงาน สามารถติดต่อผ่านช่องทางด้านล่างนี้ได้เลยครับ</p>
-      </div>
-
-      <div class="grid grid-3 margin-top">
-        <!-- Email Card -->
-        <div class="card contact-card">
-          <div class="contact-icon">✉️</div>
-          <h4>อีเมล (ัEmail)</h4>
-          <p>farlo@gmail.com</p>
-          <a href="mailto:student@example.com" class="btn btn-primary btn-sm">ส่งอีเมล</a>
+    <!-- Main Content -->
+    <main class="page-container">
+        <div class="section-title">
+            <h2>ช่องทางการติดต่อ</h2>
+            <p>Get In Touch</p>
         </div>
 
-        <!-- School Info Card -->
-        <div class="card contact-card">
-          <div class="contact-icon">🏫</div>
-          <h4>สถานศึกษา (School)</h4>
-          <p>โรงเรียน[จอมทอง]</p>
-          <span class="badge-sub">จังหวัด [เชียงใหม่]</span>
+        <div class="contact-wrapper">
+            <div class="contact-card">
+                <div class="contact-icon">📧</div>
+                <h3>อีเมล (Email)</h3>
+                <p>student@example.com</p>
+            </div>
+
+            <div class="contact-card">
+                <div class="contact-icon">🏫</div>
+                <h3>สถานศึกษา</h3>
+                <p>[กรอกชื่อโรงเรียน]</p>
+                <p>จังหวัด [กรอกจังหวัด]</p>
+            </div>
+
+            <div class="contact-card">
+                <div class="contact-icon">🌐</div>
+                <h3>Social Network</h3>
+                <p>Facebook / Instagram / Line</p>
+            </div>
         </div>
 
-        <!-- Social Media Card -->
-        <div class="card contact-card">
-          <div class="contact-icon">🌐</div>
-          <h4>โซเชียลมีเดีย</h4>
-          <p>Facebook / Instagram / Line</p>
-          <span class="badge-sub">@[มังกร]_m3</span>
+        <!-- Call to Action Box -->
+        <div class="cta-box">
+            <h3>ขอบคุณที่เข้ามารับชมเว็บไซต์ Portfolio ของฉัน!</h3>
+            <p>หากมีข้อเสนอแนะเกี่ยวกับเว็บไซต์ สามารถติดต่อพูดคุยกันได้เลยครับ</p>
+            <a href="mailto:student@example.com" class="btn btn-primary">ส่งอีเมลหาฉัน</a>
         </div>
-      </div>
-    </div>
-  </main>
+    </main>
 
-  <!-- Footer -->
-  <footer class="footer">
-    <div class="container footer-container">
-      <div class="footer-info">
-        <h3>[ด.ช.วัฒนรันดร์ สุนันตะพันธ์]</h3>
-        <p>นักเรียนชั้น ม.3/[2] | โรงเรียน[จอมทอง]</p>
-      </div>
-      <div class="footer-links">
-        <a href="index.html">หน้าแรก</a>
-        <a href="profile.html">ประวัติส่วนตัว</a>
-        <a href="education.html">การศึกษา</a>
-        <a href="hobby.html">งานอดิเรก</a>
-        <a href="contact.html">ติดต่อ</a>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      <p>&copy; 2026 Student Portfolio Project. All Rights Reserved.</p>
-    </div>
-  </footer>
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container footer-content">
+            <div class="footer-info">
+                <h3>PORTFOLIO<span>.M3</span></h3>
+                <p>โครงงานวิชาคอมพิวเตอร์ ชั้นมัธยมศึกษาปีที่ 3</p>
+            </div>
+            <div class="footer-links">
+                <a href="index.html">หน้าแรก</a>
+                <a href="profile.html">ประวัติส่วนตัว</a>
+                <a href="education.html">การศึกษา</a>
+                <a href="hobby.html">งานอดิเรก</a>
+                <a href="contact.html">ติดต่อ</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Student Portfolio. All Rights Reserved.</p>
+        </div>
+    </footer>
 
 </body>
 </html>
