@@ -72,7 +72,6 @@
             transform: translateZ(40px);
         }
 
-        /* เอฟเฟกต์สั่นตอนชาร์จพลัง */
         .charging-core {
             animation: chargeJitter 0.08s infinite alternate;
             box-shadow: 0 0 60px #ff0055, 0 0 120px #00f0ff, inset 0 0 30px #ffffff !important;
@@ -135,7 +134,6 @@
             transition: opacity 0.4s ease-out, height 0.4s ease-out;
         }
 
-        /* วงแหวนพลังงานกระแทก (Shockwave) */
         .shockwave {
             position: fixed;
             width: 10px;
@@ -154,7 +152,6 @@
             100% { width: 350px; height: 350px; opacity: 0; border-width: 1px; }
         }
 
-        /* แสงแฟลชสว่างวาบทั่วหน้าจอตอนยิง */
         .screen-flash {
             position: fixed;
             top: 0; left: 0; width: 100vw; height: 100vh;
@@ -169,9 +166,85 @@
             0% { transform: translate(-50%, -50%) scale(0.3); opacity: 1; }
             100% { transform: translate(-50%, -50%) scale(2.5); opacity: 0; }
         }
+
+        /* --- สไตล์ของหน้าต่าง INTRO POPUP VIDEO (Pacific Rim Edit) --- */
+        .intro-modal {
+            display: none;
+            position: fixed;
+            top: 0; left: 0;
+            width: 100vw; height: 100vh;
+            background: rgba(5, 10, 20, 0.92);
+            backdrop-filter: blur(12px);
+            z-index: 10000;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .intro-modal.active {
+            display: flex;
+        }
+
+        .intro-title {
+            color: #00f0ff;
+            font-size: 22px;
+            font-weight: 600;
+            letter-spacing: 2px;
+            margin-bottom: 15px;
+            text-shadow: 0 0 12px #00f0ff;
+        }
+
+        .video-box {
+            width: 85%;
+            max-width: 850px;
+            aspect-ratio: 16 / 9;
+            border: 2px solid #00f0ff;
+            border-radius: 12px;
+            box-shadow: 0 0 30px rgba(0, 240, 255, 0.5);
+            overflow: hidden;
+            background: #000;
+        }
+
+        .video-box iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .skip-btn {
+            margin-top: 20px;
+            padding: 12px 32px;
+            background: linear-gradient(135deg, #00f0ff, #0055ff);
+            color: #ffffff;
+            border: none;
+            border-radius: 30px;
+            font-size: 16px;
+            font-family: 'Kanit', sans-serif;
+            font-weight: 500;
+            cursor: pointer;
+            box-shadow: 0 0 20px rgba(0, 240, 255, 0.6);
+            transition: all 0.25s ease;
+            text-decoration: none;
+        }
+
+        .skip-btn:hover {
+            transform: scale(1.08);
+            box-shadow: 0 0 35px rgba(0, 240, 255, 1);
+            background: linear-gradient(135deg, #ff0055, #00f0ff);
+        }
     </style>
 </head>
 <body>
+
+    <!-- หน้าต่าง INTRO POPUP (สำหรับคลิป Pacific Rim Edit) -->
+    <div class="intro-modal" id="introModal">
+        <div class="intro-title">🎬 PACIFIC RIM INTRO EDIT</div>
+        <div class="video-box">
+            <!-- ฝังวิดีโอ Pacific Rim Edit จาก YouTube -->
+            <iframe id="introIframe" src="" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+        </div>
+        <button class="skip-btn" id="enterProfileBtn">ข้าม / เข้าสู่หน้าประวัติส่วนตัว →</button>
+    </div>
 
     <!-- โมเดล Mech Core ลอยล่องในพื้นหลัง -->
     <div class="mech-model-container">
@@ -191,7 +264,7 @@
             <a href="index.html" class="logo">PORTFOLIO<span>.M3</span></a>
             <ul class="nav-menu">
                 <li><a href="index.html" class="nav-link active">หน้าแรก</a></li>
-                <li><a href="profile.html" class="nav-link">ประวัติส่วนตัว</a></li>
+                <li><a href="profile.html" class="nav-link profile-trigger">ประวัติส่วนตัว</a></li>
                 <li><a href="education.html" class="nav-link">การศึกษา</a></li>
                 <li><a href="hobby.html" class="nav-link">งานอดิเรก</a></li>
                 <li><a href="contact.html" class="nav-link">ติดต่อ</a></li>
@@ -208,7 +281,7 @@
                 <h1>สวัสดีครับ <br>ยินดีต้อนรับสู่<span>เว็บแนะนำตัวเอง</span></h1>
                 <p>เว็บไซต์นี้จัดทำขึ้นสำหรับโครงงานวิชาคอมพิวเตอร์ ชั้นมัธยมศึกษาปีที่ 3 รวบรวมประวัติ ผลงาน และความสนใจของฉัน</p>
                 <div class="hero-btns">
-                    <a href="profile.html" class="btn btn-primary">รู้จักฉันมากขึ้น</a>
+                    <a href="profile.html" class="btn btn-primary profile-trigger">รู้จักฉันมากขึ้น</a>
                     <a href="contact.html" class="btn btn-secondary">ติดต่อฉัน</a>
                 </div>
             </div>
@@ -223,7 +296,7 @@
                 <div class="card-icon">👤</div>
                 <h3>ประวัติส่วนตัว</h3>
                 <p>ข้อมูลทั่วไป วันเกิด3/5/2555 จังหวัดเชียงใหม่0</p>
-                <a href="profile.html" class="link-text">ดูข้อมูลเพิ่มเติม →</a>
+                <a href="profile.html" class="link-text profile-trigger">ดูข้อมูลเพิ่มเติม →</a>
             </div>
             <div class="card">
                 <div class="card-icon">🎓</div>
@@ -247,7 +320,7 @@
         </div>
     </footer>
 
-    <!-- สคริปต์คำนวณการหันดวงตา การยิงปุ่ม R และการชาร์จยิงมหาลำแสงปุ่ม V -->
+    <!-- สคริปต์ควบคุมเอฟเฟกต์ทั้งหมด และ INTRO VIDEO -->
     <script>
         const mechCard = document.getElementById('mechCard');
         const mechCore = document.getElementById('mechCore');
@@ -255,6 +328,28 @@
         let currentMouseX = window.innerWidth / 2;
         let currentMouseY = window.innerHeight / 2;
         let isCharging = false;
+
+        // URL คลิป YouTube Pacific Rim Edit (เล่นอัตโนมัติ)
+        const youtubeEditUrl = "https://www.youtube.com/embed/5guMumAFe0E?autoplay=1";
+
+        // ดักจับการกดปุ่มประวัติส่วนตัวเพื่อเปิด Intro
+        const profileTriggers = document.querySelectorAll('.profile-trigger');
+        const introModal = document.getElementById('introModal');
+        const introIframe = document.getElementById('introIframe');
+        const enterProfileBtn = document.getElementById('enterProfileBtn');
+
+        profileTriggers.forEach(trigger => {
+            trigger.addEventListener('click', (e) => {
+                e.preventDefault(); // ระงับการเปิดเปลี่ยนหน้าทันที
+                introIframe.src = youtubeEditUrl; // โหลดวิดีโอ
+                introModal.classList.add('active'); // แสดง Pop-up อินโทร
+            });
+        });
+
+        // เมื่อกดปุ่มข้าม หรือ เข้าสู่หน้าประวัติส่วนตัว
+        enterProfileBtn.addEventListener('click', () => {
+            window.location.href = 'profile.html';
+        });
 
         // ติดตามพิกัดเมาส์
         document.addEventListener('mousemove', (e) => {
@@ -281,22 +376,20 @@
             }
         });
 
-        // ดักจับการกดคีย์บอร์ด
+        // ดักจับการกดคีย์บอร์ด R / V
         window.addEventListener('keydown', (e) => {
             if (e.repeat) return;
 
-            // กด R = ยิงเลเซอร์ปกติ
             if (e.key === 'r' || e.key === 'R') {
                 fireNormalLaser(currentMouseX, currentMouseY);
             }
 
-            // กด V = ชาร์จยิงมหาลำแสงยักษ์ทะลุจอ
             if ((e.key === 'v' || e.key === 'V') && !isCharging) {
                 chargeAndFireMegaLaser(currentMouseX, currentMouseY);
             }
         });
 
-        // --- 1. ฟังก์ชันยิงเลเซอร์ปกติ (ปุ่ม R) ---
+        // 1. ฟังก์ชันยิงเลเซอร์ปกติ (ปุ่ม R)
         function fireNormalLaser(targetX, targetY) {
             const coreRect = mechCore.getBoundingClientRect();
             const startX = coreRect.left + coreRect.width / 2;
@@ -334,27 +427,23 @@
             }, 150);
         }
 
-        // --- 2. ฟังก์ชันชาร์จยิงมหาลำแสงอลังการ (ปุ่ม V) ---
+        // 2. ฟังก์ชันชาร์จยิงมหาลำแสงอลังการ (ปุ่ม V)
         function chargeAndFireMegaLaser(targetX, targetY) {
             isCharging = true;
             mechCore.classList.add('charging-core');
 
-            // สร้าง Shockwave ชาร์จพลังงานหดเข้าสู่แกนกลาง
             const coreRect = mechCore.getBoundingClientRect();
             const startX = coreRect.left + coreRect.width / 2;
             const startY = coreRect.top + coreRect.height / 2;
 
-            // ระยะชาร์จพลังงาน 400ms ก่อนปลดปล่อยมหาลำแสง
             setTimeout(() => {
                 mechCore.classList.remove('charging-core');
 
-                // คำนวณองศาและความยาวแบบพุ่งเลยทะลุออกนอกหน้าจอ (3000px)
                 const deltaX = targetX - startX;
                 const deltaY = targetY - startY;
                 const angle = Math.atan2(deltaY, deltaX) * (180 / Math.PI);
                 const superDistance = 3000; 
 
-                // 1. สร้างมหาลำแสงยักษ์
                 const megaBeam = document.createElement('div');
                 megaBeam.className = 'mega-beam';
                 megaBeam.style.left = `${startX}px`;
@@ -362,13 +451,11 @@
                 megaBeam.style.width = `${superDistance}px`;
                 megaBeam.style.transform = `rotate(${angle}deg)`;
 
-                // 2. สร้าง Shockwave คลื่นระเบิดทรงกลมที่จุดยิง
                 const shock = document.createElement('div');
                 shock.className = 'shockwave';
                 shock.style.left = `${startX}px`;
                 shock.style.top = `${startY}px`;
 
-                // 3. แสงวาบทั่วหน้าจอ (Screen Flash)
                 const flash = document.createElement('div');
                 flash.className = 'screen-flash';
 
@@ -376,10 +463,8 @@
                 document.body.appendChild(shock);
                 document.body.appendChild(flash);
 
-                // 4. สั่นหน้าจอสร้างความรุนแรง (Screen Shake)
                 document.body.classList.add('screen-shake');
 
-                // ค่อยๆ จางเอฟเฟกต์ทั้งหมดลง
                 setTimeout(() => {
                     flash.style.opacity = '0';
                     megaBeam.style.opacity = '0';
