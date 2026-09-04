@@ -10,20 +10,75 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600&display=swap" rel="stylesheet">
     
-    <!-- สไตล์ภาพพื้นหลัง Pacific Rim จาก URL -->
     <style>
         body {
-            background: linear-gradient(rgba(10, 15, 25, 0.7), rgba(10, 15, 25, 0.7)), url('https://m.media-amazon.com/images/S/pv-target-images/373aeab8f1180951d3d7bcdbb8a8e254e514ef4d3e2cd3c426faa234a9b7030b._SX1080_FMjpg_.jpg');
-            background-size: 110% 110%; /* ขยายรูปเล็กน้อยเพื่อไม่ให้เห็นขอบดำเวลาพื้นหลังขยับ */
+            background: linear-gradient(rgba(10, 15, 25, 0.75), rgba(10, 15, 25, 0.75)), url('https://m.media-amazon.com/images/S/pv-target-images/373aeab8f1180951d3d7bcdbb8a8e254e514ef4d3e2cd3c426faa234a9b7030b._SX1080_FMjpg_.jpg');
+            background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
             background-attachment: fixed;
             color: #ffffff;
-            transition: background-position 0.1s ease-out; /* ทำให้พื้นหลังเคลื่อนที่นุ่มนวล */
+            overflow-x: hidden;
+        }
+
+        /* โมเดลหุ่นยนต์ 3D ในพื้นหลังที่เคลื่อนที่ตามเมาส์ */
+        .mech-model-container {
+            position: fixed;
+            top: 20%;
+            right: 5%;
+            width: 260px;
+            height: 260px;
+            pointer-events: none; /* ไม่บังการคลิกปุ่มบนหน้าเว็บ */
+            z-index: 1;
+            perspective: 1000px;
+        }
+
+        .mech-card {
+            width: 100%;
+            height: 100%;
+            background: rgba(15, 23, 42, 0.6);
+            border: 2px solid #00f0ff;
+            border-radius: 50%;
+            box-shadow: 0 0 30px rgba(0, 240, 255, 0.4), inset 0 0 20px rgba(0, 240, 255, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(8px);
+            transition: transform 0.1s ease-out;
+            transform-style: preserve-3d;
+        }
+
+        /* ดวงตา/แกนพลังงานหุ่นยนต์ตรงกลางที่ขยับตามเมาส์ */
+        .mech-core {
+            width: 90px;
+            height: 90px;
+            background: radial-gradient(circle, #00f0ff 0%, #0055ff 70%, transparent 100%);
+            border-radius: 50%;
+            box-shadow: 0 0 25px #00f0ff;
+            transition: transform 0.05s ease-out;
+            transform: translateZ(40px);
+        }
+
+        .mech-label {
+            position: absolute;
+            bottom: -25px;
+            font-size: 12px;
+            letter-spacing: 2px;
+            color: #00f0ff;
+            text-shadow: 0 0 8px #00f0ff;
+            font-weight: 600;
         }
     </style>
 </head>
 <body>
+
+    <!-- โมเดล Mech Core ลอยล่องในพื้นหลัง -->
+    <div class="mech-model-container">
+        <div class="mech-card" id="mechCard">
+            <div class="mech-core" id="mechCore"></div>
+            <span class="mech-label">JAEGER CORE v3.0</span>
+        </div>
+    </div>
 
     <!-- Header & Navigation -->
     <header class="navbar-wrapper">
@@ -53,7 +108,6 @@
                 </div>
             </div>
             <div class="hero-image">
-                <!-- รูปโปรไฟล์ Pacific Rim จาก URL -->
                 <img src="https://m.media-amazon.com/images/S/pv-target-images/373aeab8f1180951d3d7bcdbb8a8e254e514ef4d3e2cd3c426faa234a9b7030b._SX1080_FMjpg_.jpg" alt="Pacific Rim">
             </div>
         </section>
@@ -88,19 +142,35 @@
         </div>
     </footer>
 
-    <!-- Script สำหรับขยับภาพพื้นหลังตามการเคลื่อนที่ของเมาส์ -->
+    <!-- สคริปต์คำนวณการหันและเลื่อนตำแหน่งตามเมาส์ -->
     <script>
-        document.addEventListener('mousemove', (e) => {
-            // คำนวณตำแหน่งเมาส์เทียบกับขนาดหน้าจอ
-            const mouseX = (e.clientX / window.innerWidth) - 0.5;
-            const mouseY = (e.clientY / window.innerHeight) - 0.5;
-            
-            // กำหนดระยะการขยับของภาพ (ปรับตัวเลข 30 เพื่อเพิ่ม/ลดความแรงในการขยับ)
-            const moveX = mouseX * 30;
-            const moveY = mouseY * 30;
+        const mechCard = document.getElementById('mechCard');
+        const mechCore = document.getElementById('mechCore');
 
-            // เลื่อนตำแหน่งพื้นหลัง
-            document.body.style.backgroundPosition = `calc(50% + ${moveX}px) calc(50% + ${moveY}px)`;
+        document.addEventListener('mousemove', (e) => {
+            const mouseX = e.clientX;
+            const mouseY = e.clientY;
+
+            // หาพิกัดศูนย์กลางของโมเดล
+            const rect = mechCard.getBoundingClientRect();
+            const cardX = rect.left + rect.width / 2;
+            const cardY = rect.top + rect.height / 2;
+
+            // คำนวณระยะห่างระหว่างเมาส์กับโมเดล
+            const deltaX = mouseX - cardX;
+            const deltaY = mouseY - cardY;
+
+            // คำนวณการเอียง 3D (Rotate)
+            const rotateX = (deltaY / window.innerHeight) * -45;
+            const rotateY = (deltaX / window.innerWidth) * 45;
+
+            // คำนวณการขยับแกนพลังงานตรงกลาง (Eye Tracking)
+            const coreMoveX = (deltaX / window.innerWidth) * 35;
+            const coreMoveY = (deltaY / window.innerHeight) * 35;
+
+            // สั่งงาน CSS ให้เอียงและหันตามเมาส์
+            mechCard.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+            mechCore.style.transform = `translate3d(${coreMoveX}px, ${coreMoveY}px, 40px)`;
         });
     </script>
 </body>
