@@ -3,20 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ติดต่อ - Student Portfolio M.3</title>
+    <title>ติดต่อ | Student Portfolio</title>
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
 
-    <!-- Header Navigation -->
+    <!-- Navigation Bar -->
     <header class="navbar-container">
         <nav class="navbar">
-            <a href="index.html" class="logo">
-                <span class="logo-badge">M.3</span> Portfolio
-            </a>
+            <a href="index.html" class="logo">PORTFOLIO<span>.M3</span></a>
             <ul class="nav-menu">
                 <li><a href="index.html" class="nav-link">หน้าแรก</a></li>
                 <li><a href="profile.html" class="nav-link">ประวัติส่วนตัว</a></li>
@@ -27,62 +25,53 @@
         </nav>
     </header>
 
-    <main class="container section">
+    <main class="container">
         <div class="page-header">
-            <h1 class="page-title">ช่องทางการติดต่อ</h1>
-            <p class="page-subtitle">Get in Touch With Me</p>
+            <h1>ช่องทางการติดต่อ</h1>
+            <p>ยินดีที่ได้รู้จัก สามารถพูดคุยหรือติดต่องานได้ทางช่องทางด้านล่างนี้</p>
         </div>
 
-        <div class="contact-layout">
-            <!-- Contact Cards Left Column -->
-            <div class="contact-cards-stack">
-                <div class="contact-tile">
-                    <div class="tile-icon">📧</div>
-                    <div class="tile-info">
-                        <h4>อีเมลสำหรับติดต่อ</h4>
-                        <p>student@example.com</p>
-                    </div>
-                </div>
-
-                <div class="contact-tile">
-                    <div class="tile-icon">🏫</div>
-                    <div class="tile-info">
-                        <h4>สถานที่ศึกษา</h4>
-                        <p>โรงเรียน[กรอกชื่อโรงเรียน] ชั้น ม.3</p>
-                    </div>
-                </div>
-
-                <div class="contact-tile">
-                    <div class="tile-icon">🌐</div>
-                    <div class="tile-info">
-                        <h4>Social Media</h4>
-                        <p>Facebook / IG / Line: @myusername</p>
-                    </div>
-                </div>
+        <section class="contact-grid">
+            <div class="contact-card">
+                <div class="contact-icon">📧</div>
+                <h3>อีเมล</h3>
+                <p>ส่งข้อความถึงฉันได้ตลอดเวลา</p>
+                <a href="mailto:student@example.com" class="contact-button">student@example.com</a>
             </div>
 
-            <!-- Big Interactive CTA Right Column -->
-            <div class="contact-banner-cta">
-                <div class="cta-inner">
-                    <span class="cta-badge">📬 ส่งข้อความหาฉัน</span>
-                    <h2>มีข้อสงสัยหรือต้องการแลกเปลี่ยนความรู้?</h2>
-                    <p>ยินดีต้อนรับสำหรับการสอบถามเรื่องโครงงานคอมพิวเตอร์ หรือทักทายพูดคุยแลกเปลี่ยนประสบการณ์กันได้เลยครับ/ค่ะ!</p>
-                    <a href="mailto:student@example.com" class="btn btn-light-glow">ส่งอีเมลเลยทันที</a>
-                </div>
+            <div class="contact-card">
+                <div class="contact-icon">🌐</div>
+                <h3>Social Media</h3>
+                <p>ติดตามความเคลื่อนไหวทางโซเชียล</p>
+                <a href="https://facebook.com" target="_blank" class="contact-button">Facebook Account</a>
             </div>
-        </div>
+
+            <div class="contact-card">
+                <div class="contact-icon">🏫</div>
+                <h3>สถานศึกษา</h3>
+                <p>โรงเรียน[กรอกชื่อโรงเรียน]</p>
+                <span class="contact-info-text">จังหวัด[กรอกจังหวัด]</span>
+            </div>
+        </section>
+
+        <!-- CTA Box -->
+        <section class="cta-section">
+            <h2>ขอบคุณที่แวะมาเยี่ยมชมเว็บไซต์!</h2>
+            <p>หากคุณมีคำแนะนำหรือติชมโครงงานเว็บไซต์ สามารถติดต่อพูดคุยได้เสมอครับ/ค่ะ</p>
+            <a href="index.html" class="btn btn-primary">กลับสู่หน้าแรก</a>
+        </section>
     </main>
 
     <!-- Footer -->
     <footer class="footer">
-        <div class="container footer-content">
+        <div class="footer-container">
             <div class="footer-info">
-                <h3>Portfolio.M3</h3>
-                <p>โครงงานวิชาคอมพิวเตอร์ - ชั้นมัธยมศึกษาปีที่ 3</p>
-                <p>จัดทำโดย: [กรอกชื่อ-นามสกุล] ชั้น ม.3/[กรอกห้อง]</p>
+                <h3>PORTFOLIO<span>.M3</span></h3>
+                <p>เว็บไซต์แนะนำตัวเอง โครงงานวิชาคอมพิวเตอร์</p>
+                <p>จัดทำโดย [กรอกชื่อ-นามสกุล] ชั้น ม.3/[กรอกห้อง]</p>
             </div>
             <div class="footer-links">
-                <h4>เมนูด่วน</h4>
+                <h4>เมนูแนะนำ</h4>
                 <ul>
                     <li><a href="index.html">หน้าแรก</a></li>
                     <li><a href="profile.html">ประวัติส่วนตัว</a></li>
