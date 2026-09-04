@@ -28,8 +28,8 @@
             right: 5%;
             width: 260px;
             height: 260px;
-            pointer-events: none; /* ไม่บังการคลิกปุ่มบนหน้าเว็บ */
-            z-index: 1;
+            pointer-events: none;
+            z-index: 10;
             perspective: 1000px;
         }
 
@@ -48,25 +48,60 @@
             transform-style: preserve-3d;
         }
 
-        /* ดวงตา/แกนพลังงานหุ่นยนต์ตรงกลางที่ขยับตามเมาส์ */
+        /* ดวงตา/แกนพลังงานหุ่นยนต์ตรงกลาง */
         .mech-core {
             width: 90px;
             height: 90px;
             background: radial-gradient(circle, #00f0ff 0%, #0055ff 70%, transparent 100%);
             border-radius: 50%;
             box-shadow: 0 0 25px #00f0ff;
-            transition: transform 0.05s ease-out;
+            transition: transform 0.05s ease-out, box-shadow 0.1s ease-out;
             transform: translateZ(40px);
         }
 
         .mech-label {
             position: absolute;
-            bottom: -25px;
-            font-size: 12px;
-            letter-spacing: 2px;
+            bottom: -35px;
+            font-size: 11px;
+            letter-spacing: 1.5px;
             color: #00f0ff;
             text-shadow: 0 0 8px #00f0ff;
             font-weight: 600;
+            text-align: center;
+            width: 100%;
+        }
+
+        /* สไตล์เส้นลำแสงเลเซอร์ */
+        .laser-beam {
+            position: fixed;
+            height: 6px;
+            background: linear-gradient(90deg, #00f0ff, #ffffff, #ff0055);
+            box-shadow: 0 0 15px #00f0ff, 0 0 30px #ff0055;
+            border-radius: 3px;
+            pointer-events: none;
+            z-index: 9999;
+            transform-origin: 0 50%;
+            opacity: 1;
+            transition: opacity 0.2s ease-out;
+        }
+
+        /* สไตล์เอฟเฟกต์การระเบิดที่ปลายทาง */
+        .laser-impact {
+            position: fixed;
+            width: 30px;
+            height: 30px;
+            background: radial-gradient(circle, #ffffff 0%, #ff0055 50%, transparent 100%);
+            box-shadow: 0 0 25px #ff0055, 0 0 50px #00f0ff;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9999;
+            transform: translate(-50%, -50%);
+            animation: impactAnim 0.3s ease-out forwards;
+        }
+
+        @keyframes impactAnim {
+            0% { transform: translate(-50%, -50%) scale(0.3); opacity: 1; }
+            100% { transform: translate(-50%, -50%) scale(2.5); opacity: 0; }
         }
     </style>
 </head>
@@ -76,7 +111,7 @@
     <div class="mech-model-container">
         <div class="mech-card" id="mechCard">
             <div class="mech-core" id="mechCore"></div>
-            <span class="mech-label">JAEGER CORE v3.0</span>
+            <span class="mech-label">JAEGER CORE v3.0<br><small style="color: #ff0055; font-size: 10px;">[กด R เพื่อยิงลำแสง]</small></span>
         </div>
     </div>
 
@@ -142,36 +177,86 @@
         </div>
     </footer>
 
-    <!-- สคริปต์คำนวณการหันและเลื่อนตำแหน่งตามเมาส์ -->
+    <!-- สคริปต์คำนวณตำแหน่งเมาส์ การหันหน้า และการยิงเลเซอร์ -->
     <script>
         const mechCard = document.getElementById('mechCard');
         const mechCore = document.getElementById('mechCore');
+        
+        let currentMouseX = window.innerWidth / 2;
+        let currentMouseY = window.innerHeight / 2;
 
+        // ติดตามตำแหน่งเมาส์ตลอดเวลา
         document.addEventListener('mousemove', (e) => {
-            const mouseX = e.clientX;
-            const mouseY = e.clientY;
+            currentMouseX = e.clientX;
+            currentMouseY = e.clientY;
 
-            // หาพิกัดศูนย์กลางของโมเดล
             const rect = mechCard.getBoundingClientRect();
             const cardX = rect.left + rect.width / 2;
             const cardY = rect.top + rect.height / 2;
 
-            // คำนวณระยะห่างระหว่างเมาส์กับโมเดล
-            const deltaX = mouseX - cardX;
-            const deltaY = mouseY - cardY;
+            const deltaX = currentMouseX - cardX;
+            const deltaY = currentMouseY - cardY;
 
-            // คำนวณการเอียง 3D (Rotate)
             const rotateX = (deltaY / window.innerHeight) * -45;
             const rotateY = (deltaX / window.innerWidth) * 45;
 
-            // คำนวณการขยับแกนพลังงานตรงกลาง (Eye Tracking)
             const coreMoveX = (deltaX / window.innerWidth) * 35;
             const coreMoveY = (deltaY / window.innerHeight) * 35;
 
-            // สั่งงาน CSS ให้เอียงและหันตามเมาส์
             mechCard.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
             mechCore.style.transform = `translate3d(${coreMoveX}px, ${coreMoveY}px, 40px)`;
         });
+
+        // ดักจับการกดปุ่ม 'R' หรือ 'r' เพื่อยิงลำแสง
+        window.addEventListener('keydown', (e) => {
+            if (e.key === 'r' || e.key === 'R') {
+                if (e.repeat) return; // ป้องกันการยิงค้างเมื่อกดปุ่มแช่ไว้
+                fireLaser(currentMouseX, currentMouseY);
+            }
+        });
+
+        // ฟังก์ชันสร้างและยิงลำแสง
+        function fireLaser(targetX, targetY) {
+            const coreRect = mechCore.getBoundingClientRect();
+            const startX = coreRect.left + coreRect.width / 2;
+            const startY = coreRect.top + coreRect.height / 2;
+
+            // คำนวณระยะทางและองศาไปยังเป้าหมาย
+            const deltaX = targetX - startX;
+            const deltaY = targetY - startY;
+            const distance = Math.hypot(deltaX, deltaY);
+            const angle = Math.atan2(deltaY, deltaX) * (180 / Math.PI);
+
+            // สร้าง Element ลำแสง
+            const laser = document.createElement('div');
+            laser.className = 'laser-beam';
+            laser.style.left = `${startX}px`;
+            laser.style.top = `${startY}px`;
+            laser.style.width = `${distance}px`;
+            laser.style.transform = `rotate(${angle}deg)`;
+
+            // สร้าง Element เอฟเฟกต์ระเบิดปลายทาง
+            const impact = document.createElement('div');
+            impact.className = 'laser-impact';
+            impact.style.left = `${targetX}px`;
+            impact.style.top = `${targetY}px`;
+
+            document.body.appendChild(laser);
+            document.body.appendChild(impact);
+
+            // เรืองแสงดวงตาชั่วขณะตอนยิง
+            mechCore.style.boxShadow = '0 0 50px #ff0055, 0 0 100px #ffffff';
+
+            // ล้างภาพเอฟเฟกต์ออกจากหน้าจอเมื่อยิงเสร็จ
+            setTimeout(() => {
+                laser.style.opacity = '0';
+                mechCore.style.boxShadow = '0 0 25px #00f0ff';
+                setTimeout(() => {
+                    laser.remove();
+                    impact.remove();
+                }, 200);
+            }, 150);
+        }
     </script>
 </body>
 </html>
