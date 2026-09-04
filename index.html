@@ -167,13 +167,13 @@
             100% { transform: translate(-50%, -50%) scale(2.5); opacity: 0; }
         }
 
-        /* --- สไตล์ของหน้าต่าง INTRO POPUP VIDEO (Pacific Rim Edit) --- */
+        /* --- สไตล์ของหน้าต่าง INTRO POPUP VIDEO --- */
         .intro-modal {
             display: none;
             position: fixed;
             top: 0; left: 0;
             width: 100vw; height: 100vh;
-            background: rgba(5, 10, 20, 0.92);
+            background: rgba(5, 10, 20, 0.95);
             backdrop-filter: blur(12px);
             z-index: 10000;
             flex-direction: column;
@@ -236,12 +236,12 @@
 </head>
 <body>
 
-    <!-- หน้าต่าง INTRO POPUP (สำหรับคลิป Pacific Rim Edit) -->
+    <!-- หน้าต่าง INTRO POPUP (Pacific Rim Edit + มีเสียง) -->
     <div class="intro-modal" id="introModal">
-        <div class="intro-title">🎬 PACIFIC RIM INTRO EDIT</div>
+        <div class="intro-title">🎬 PACIFIC RIM EDIT INTRO</div>
         <div class="video-box">
-            <!-- ฝังวิดีโอ Pacific Rim Edit จาก YouTube -->
-            <iframe id="introIframe" src="" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+            <!-- สิทธิ์การเล่น autoplay พร้อมเสียงโดยตรงผ่าน iframe -->
+            <iframe id="introIframe" src="" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>
         </div>
         <button class="skip-btn" id="enterProfileBtn">ข้าม / เข้าสู่หน้าประวัติส่วนตัว →</button>
     </div>
@@ -320,7 +320,7 @@
         </div>
     </footer>
 
-    <!-- สคริปต์ควบคุมเอฟเฟกต์ทั้งหมด และ INTRO VIDEO -->
+    <!-- สคริปต์การทำงาน -->
     <script>
         const mechCard = document.getElementById('mechCard');
         const mechCore = document.getElementById('mechCore');
@@ -329,10 +329,10 @@
         let currentMouseY = window.innerHeight / 2;
         let isCharging = false;
 
-        // URL คลิป YouTube Pacific Rim Edit (เล่นอัตโนมัติ)
-        const youtubeEditUrl = "https://www.youtube.com/embed/5guMumAFe0E?autoplay=1";
+        // URL วิดีโอของคุณ พร้อมตั้งค่า autoplay=1 (เปิดเสียงตามปกติเนื่องจากถูกสั่งเปิดจากการกดคลิกของผู้ใช้)
+        const youtubeEditUrl = "https://www.youtube.com/embed/Av8Nj2laAYc?autoplay=1&enablejsapi=1";
 
-        // ดักจับการกดปุ่มประวัติส่วนตัวเพื่อเปิด Intro
+        // ดักจับการกดปุ่มประวัติส่วนตัวเพื่อแสดง Pop-up อินโทรวิดีโอพร้อมเสียง
         const profileTriggers = document.querySelectorAll('.profile-trigger');
         const introModal = document.getElementById('introModal');
         const introIframe = document.getElementById('introIframe');
@@ -340,14 +340,15 @@
 
         profileTriggers.forEach(trigger => {
             trigger.addEventListener('click', (e) => {
-                e.preventDefault(); // ระงับการเปิดเปลี่ยนหน้าทันที
-                introIframe.src = youtubeEditUrl; // โหลดวิดีโอ
-                introModal.classList.add('active'); // แสดง Pop-up อินโทร
+                e.preventDefault();
+                introIframe.src = youtubeEditUrl; // โหลดวิดีโอพร้อมเสียงแบบอัตโนมัติ
+                introModal.classList.add('active');
             });
         });
 
-        // เมื่อกดปุ่มข้าม หรือ เข้าสู่หน้าประวัติส่วนตัว
+        // ปุ่มกดข้าม/เข้าสู่หน้าประวัติส่วนตัว
         enterProfileBtn.addEventListener('click', () => {
+            introIframe.src = ""; // หยุดเสียงและวิดีโอเมื่อปิดหน้าต่าง
             window.location.href = 'profile.html';
         });
 
@@ -376,7 +377,7 @@
             }
         });
 
-        // ดักจับการกดคีย์บอร์ด R / V
+        // ดักจับคีย์บอร์ด R และ V
         window.addEventListener('keydown', (e) => {
             if (e.repeat) return;
 
