@@ -11,11 +11,11 @@
 </head>
 <body>
 
-    <!-- Navigation Bar -->
+    <!-- Header Navigation -->
     <header class="navbar-container">
         <nav class="navbar">
             <a href="index.html" class="logo">
-                <span class="logo-icon">💻</span> Portfolio.M3
+                <span class="logo-badge">M.3</span> Portfolio
             </a>
             <ul class="nav-menu">
                 <li><a href="index.html" class="nav-link active">หน้าแรก</a></li>
@@ -27,46 +27,48 @@
         </nav>
     </header>
 
-    <main>
-        <!-- Hero Section -->
-        <section class="hero-section">
-            <div class="hero-container">
-                <div class="hero-content">
-                    <span class="badge">ยินดีต้อนรับสู่พอร์ตโฟลิโอ</span>
-                    <h1 class="hero-title">สวัสดีครับ/ค่ะ! <br>ฉันคือ <span class="highlight">[กรอกชื่อ-นามสกุล]</span></h1>
-                    <p class="hero-subtitle">นักเรียนชั้นมัธยมศึกษาปีที่ 3/1 โรงเรียน[กรอกชื่อโรงเรียน] ผู้มีความสนใจในด้านเทคโนโลยีและการเรียนรู้สิ่งใหม่ๆ</p>
-                    <div class="hero-buttons">
-                        <a href="profile.html" class="btn btn-primary">รู้จักฉันมากขึ้น</a>
-                        <a href="hobby.html" class="btn btn-secondary">ดูงานอดิเรกของฉัน</a>
-                    </div>
-                </div>
-                <div class="hero-image-wrapper">
-                    <div class="blob-bg"></div>
-                    <img src="https://placehold.co/400x400/1976d2/ffffff?text=My+Profile" alt="รูปโปรไฟล์ของฉัน" class="hero-img">
+    <main class="container section">
+        <!-- Hero Layout -->
+        <section class="hero-bento-grid">
+            <!-- Main Intro Card -->
+            <div class="bento-card bento-hero">
+                <span class="badge">👋 สวัสดีครับ/ค่ะ</span>
+                <h1 class="hero-title">ฉันคือ <span class="highlight">[กรอกชื่อ-นามสกุล]</span></h1>
+                <p class="hero-subtitle">นักเรียนชั้นมัธยมศึกษาปีที่ 3/1 โรงเรียน[กรอกชื่อโรงเรียน] มุ่งมั่นในการเรียนรู้เทคโนโลยี ภาษา และการพัฒนาตนเอง</p>
+                <div class="hero-buttons">
+                    <a href="profile.html" class="btn btn-primary">ทำความรู้จักกัน</a>
+                    <a href="contact.html" class="btn btn-secondary">ติดต่องาน / พูดคุย</a>
                 </div>
             </div>
-        </section>
 
-        <!-- Quick Highlight Section -->
-        <section class="section highlight-section">
-            <div class="container">
-                <div class="grid-3">
-                    <div class="info-card">
-                        <div class="card-icon">🎓</div>
-                        <h3>การศึกษา</h3>
-                        <p>กำลังศึกษาชั้น ม.3 โรงเรียน[กรอกชื่อโรงเรียน]</p>
-                    </div>
-                    <div class="info-card">
-                        <div class="card-icon">⭐</div>
-                        <h3>ความสนใจ</h3>
-                        <p>ความสนใจเทคโนโลยี การเขียนโปรแกรม และภาษา</p>
-                    </div>
-                    <div class="info-card">
-                        <div class="card-icon">🚀</div>
-                        <h3>เป้าหมาย</h3>
-                        <p>มุ่งมั่นพัฒนาตนเองเพื่อเข้าสู่สายการเรียนที่ใฝ่ฝัน</p>
-                    </div>
+            <!-- Profile Image Box -->
+            <div class="bento-card bento-image-box">
+                <div class="image-wrapper">
+                    <img src="https://placehold.co/400x400/1976d2/ffffff?text=My+Profile" alt="รูปโปรไฟล์ของฉัน" class="hero-avatar">
                 </div>
+            </div>
+
+            <!-- Mini Stat 1 -->
+            <div class="bento-card bento-stat">
+                <div class="stat-icon">🎓</div>
+                <div class="stat-info">
+                    <h3>มัธยมศึกษาปีที่ 3</h3>
+                    <p>โรงเรียน[กรอกชื่อโรงเรียน]</p>
+                </div>
+            </div>
+
+            <!-- Mini Stat 2 -->
+            <div class="bento-card bento-stat">
+                <div class="stat-icon">💻</div>
+                <div class="stat-info">
+                    <h3>วิชาที่ชื่นชอบ</h3>
+                    <p>[กรอกวิชาที่ชอบ]</p>
+                </div>
+            </div>
+
+            <!-- Quick Quote Card -->
+            <div class="bento-card bento-quote">
+                <p>“การเรียนรู้ไม่มีสิ้นสุด ความพยายามในวันนี้คือความสำเร็จในวันหน้า”</p>
             </div>
         </section>
     </main>
