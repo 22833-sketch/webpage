@@ -1,100 +1,93 @@
 <!DOCTYPE html>
 <html lang="th">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>หน้าแรก | Student Portfolio M.3</title>
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>หน้าแรก - Student Portfolio</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
 
-  <!-- Navigation Bar -->
-  <header class="navbar">
-    <div class="nav-container">
-      <a href="index.html" class="nav-logo">
-        <span class="logo-badge">M.3</span>
-        PORTFOLIO
-      </a>
-      <nav class="nav-menu">
-        <a href="index.html" class="nav-link active">หน้าแรก</a>
-        <a href="profile.html" class="nav-link">ประวัติส่วนตัว</a>
-        <a href="education.html" class="nav-link">การศึกษา</a>
-        <a href="hobby.html" class="nav-link">งานอดิเรก</a>
-        <a href="contact.html" class="nav-link">ติดต่อ</a>
-      </nav>
-    </div>
-  </header>
+    <!-- Navigation Bar -->
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">PORTFOLIO<span>.M3</span></a>
+            <nav class="nav-menu">
+                <a href="index.html" class="nav-link active">หน้าแรก</a>
+                <a href="profile.html" class="nav-link">ประวัติส่วนตัว</a>
+                <a href="education.html" class="nav-link">การศึกษา</a>
+                <a href="hobby.html" class="nav-link">งานอดิเรก</a>
+                <a href="contact.html" class="nav-link">ติดต่อ</a>
+            </nav>
+        </div>
+    </header>
 
-  <!-- Main Content -->
-  <main>
     <!-- Hero Section -->
-    <section class="hero-section">
-      <div class="container hero-container">
-        <div class="hero-content">
-          <span class="badge">WELCOME TO MY PORTFOLIO</span>
-          <h1 class="hero-title">สวัสดีครับ! <br>ฉันคือ <span class="highlight-text">[ด.ช.วัฒนรันดร์ สุนันตะพันธ์]</span></h1>
-          <p class="hero-subtitle">นักเรียนชั้นมัธยมศึกษาปีที่ 3/[2] โรงเรียน[จอมทอง] ผู้มีความสนใจในด้านเทคโนโลยี งานออกแบบ และการเรียนรู้สิ่งใหม่ๆ</p>
-          <div class="hero-actions">
-            <a href="profile.html" class="btn btn-primary">รู้จักฉันมากขึ้น</a>
-            <a href="hobby.html" class="btn btn-outline">ดูงานอดิเรกของฉัน</a>
-          </div>
+    <main class="hero-section">
+        <div class="hero-container">
+            <div class="hero-text">
+                <span class="badge">Student Portfolio M.3</span>
+                <h1>สวัสดีครับ! ยินดีต้อนรับสู่ <br><span class="highlight">โลกแห่งการเรียนรู้ของฉัน</span></h1>
+                <p class="hero-description">
+                    ฉันเป็นนักเรียนชั้นมัธยมศึกษาปีที่ 3 ที่มีความสนใจในด้านเทคโนโลยี การออกแบบ และการเรียนรู้สิ่งใหม่ๆ เว็บไซต์นี้จัดทำขึ้นเพื่อแนะนำตัวเองและเป็นโครงงานวิชาคอมพิวเตอร์
+                </p>
+                <div class="hero-buttons">
+                    <a href="profile.html" class="btn btn-primary">รู้จักฉันมากขึ้น</a>
+                    <a href="hobby.html" class="btn btn-secondary">ดูงานอดิเรกของฉัน</a>
+                </div>
+            </div>
+            <div class="hero-image-wrapper">
+                <div class="circle-bg"></div>
+                <div class="profile-frame">
+                    <img src="https://placehold.co/400x400/1976d2/ffffff?text=Profile+Image" alt="รูปโปรไฟล์ของฉัน" class="hero-img">
+                </div>
+            </div>
         </div>
-        <div class="hero-visual">
-          <div class="profile-frame">
-            <div class="profile-bg-circle"></div>
-            <img src="https://placehold.co/400x400/1976d2/ffffff?text=My+Profile" alt="รูปโปรไฟล์ของฉัน" class="profile-img">
-          </div>
+    </main>
+
+    <!-- Highlights Section -->
+    <section class="highlights-section">
+        <div class="container">
+            <div class="grid-3">
+                <div class="feature-card">
+                    <div class="icon-box">👨‍🎓</div>
+                    <h3>ระดับชั้น</h3>
+                    <p>มัธยมศึกษาปีที่ 3/1</p>
+                </div>
+                <div class="feature-card">
+                    <div class="icon-box">💻</div>
+                    <h3>ความสนใจ</h3>
+                    <p>การพัฒนาเว็บ & เทคโนโลยี</p>
+                </div>
+                <div class="feature-card">
+                    <div class="icon-box">🏆</div>
+                    <h3>เป้าหมาย</h3>
+                    <p>มุ่งมั่นพัฒนาตนเองอย่างต่อเนื่อง</p>
+                </div>
+            </div>
         </div>
-      </div>
     </section>
 
-    <!-- Quick Highlights -->
-    <section class="section highlights-section">
-      <div class="container">
-        <div class="section-header">
-          <h2>จุดเด่น & ความสนใจ</h2>
-          <p>สรุปย่อความเป็นตัวตนของฉัน</p>
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container footer-content">
+            <div class="footer-info">
+                <h3>PORTFOLIO<span>.M3</span></h3>
+                <p>โครงงานวิชาคอมพิวเตอร์ ชั้นมัธยมศึกษาปีที่ 3</p>
+            </div>
+            <div class="footer-links">
+                <a href="index.html">หน้าแรก</a>
+                <a href="profile.html">ประวัติส่วนตัว</a>
+                <a href="education.html">การศึกษา</a>
+                <a href="hobby.html">งานอดิเรก</a>
+                <a href="contact.html">ติดต่อ</a>
+            </div>
         </div>
-        <div class="grid grid-3">
-          <div class="card highlight-card">
-            <div class="card-icon">🎓</div>
-            <h3>การเรียนรู้</h3>
-            <p>มุ่งมั่นในระดับชั้น ม.3 ชอบศึกษาวิชา[กรอกวิชาที่ชอบ] และพัฒนาทักษะใหม่ๆ อยู่เสมอ</p>
-          </div>
-          <div class="card highlight-card">
-            <div class="card-icon">💻</div>
-            <h3>เทคโนโลยี</h3>
-            <p>สนใจเกี่ยวกับ[การประดิษฐ์สิ่งของ] และการสร้างสรรค์ผลงานด้วยคอมพิวเตอร์</p>
-          </div>
-          <div class="card highlight-card">
-            <div class="card-icon">🎨</div>
-            <h3>งานอดิเรก</h3>
-            <p>ยามว่างชอบ[การประดิษฐ์สิ่งของ] เพื่อศชสึกษาเรื่องกลไกและเติมเต็มแรงบันดาลใจ</p>
-          </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Student Portfolio. All Rights Reserved.</p>
         </div>
-      </div>
-    </section>
-  </main>
-
-  <!-- Footer -->
-  <footer class="footer">
-    <div class="container footer-container">
-      <div class="footer-info">
-        <h3>[วัฒนรันดร์ สุนันตะพันธ์]</h3>
-        <p>นักเรียนชั้น ม.3/[2] | โรงเรียน[จอมทอง]</p>
-      </div>
-      <div class="footer-links">
-        <a href="index.html">หน้าแรก</a>
-        <a href="profile.html">ประวัติส่วนตัว</a>
-        <a href="education.html">การศึกษา</a>
-        <a href="hobby.html">งานอดิเรก</a>
-        <a href="contact.html">ติดต่อ</a>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      <p>&copy; 2026 Student Portfolio Project. All Rights Reserved.</p>
-    </div>
-  </footer>
+    </footer>
 
 </body>
 </html>
