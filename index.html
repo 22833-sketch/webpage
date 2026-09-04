@@ -14,11 +14,12 @@
     <style>
         body {
             background: linear-gradient(rgba(10, 15, 25, 0.7), rgba(10, 15, 25, 0.7)), url('https://m.media-amazon.com/images/S/pv-target-images/373aeab8f1180951d3d7bcdbb8a8e254e514ef4d3e2cd3c426faa234a9b7030b._SX1080_FMjpg_.jpg');
-            background-size: cover;
+            background-size: 110% 110%; /* ขยายรูปเล็กน้อยเพื่อไม่ให้เห็นขอบดำเวลาพื้นหลังขยับ */
             background-position: center;
             background-repeat: no-repeat;
             background-attachment: fixed;
             color: #ffffff;
+            transition: background-position 0.1s ease-out; /* ทำให้พื้นหลังเคลื่อนที่นุ่มนวล */
         }
     </style>
 </head>
@@ -87,5 +88,20 @@
         </div>
     </footer>
 
+    <!-- Script สำหรับขยับภาพพื้นหลังตามการเคลื่อนที่ของเมาส์ -->
+    <script>
+        document.addEventListener('mousemove', (e) => {
+            // คำนวณตำแหน่งเมาส์เทียบกับขนาดหน้าจอ
+            const mouseX = (e.clientX / window.innerWidth) - 0.5;
+            const mouseY = (e.clientY / window.innerHeight) - 0.5;
+            
+            // กำหนดระยะการขยับของภาพ (ปรับตัวเลข 30 เพื่อเพิ่ม/ลดความแรงในการขยับ)
+            const moveX = mouseX * 30;
+            const moveY = mouseY * 30;
+
+            // เลื่อนตำแหน่งพื้นหลัง
+            document.body.style.backgroundPosition = `calc(50% + ${moveX}px) calc(50% + ${moveY}px)`;
+        });
+    </script>
 </body>
 </html>
