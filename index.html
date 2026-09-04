@@ -21,7 +21,20 @@
             overflow-x: hidden;
         }
 
-        /* โมเดลหุ่นยนต์ 3D ในพื้นหลังที่เคลื่อนที่ตามเมาส์ */
+        /* เอฟเฟกต์หน้าจอสั่นสะเทือนเมื่อยิงมหาลำแสง */
+        .screen-shake {
+            animation: shakeAnim 0.35s cubic-bezier(.36,.07,.19,.97) both;
+        }
+
+        @keyframes shakeAnim {
+            0%, 100% { transform: translate(0, 0); }
+            20% { transform: translate(-12px, 8px) rotate(-1deg); }
+            40% { transform: translate(12px, -8px) rotate(1deg); }
+            60% { transform: translate(-8px, 12px); }
+            80% { transform: translate(8px, -4px); }
+        }
+
+        /* โมเดลหุ่นยนต์ 3D ในพื้นหลัง */
         .mech-model-container {
             position: fixed;
             top: 20%;
@@ -48,7 +61,7 @@
             transform-style: preserve-3d;
         }
 
-        /* ดวงตา/แกนพลังงานหุ่นยนต์ตรงกลาง */
+        /* ดวงตา/แกนพลังงานหุ่นยนต์ */
         .mech-core {
             width: 90px;
             height: 90px;
@@ -59,9 +72,21 @@
             transform: translateZ(40px);
         }
 
+        /* เอฟเฟกต์สั่นตอนชาร์จพลัง */
+        .charging-core {
+            animation: chargeJitter 0.08s infinite alternate;
+            box-shadow: 0 0 60px #ff0055, 0 0 120px #00f0ff, inset 0 0 30px #ffffff !important;
+            background: radial-gradient(circle, #ffffff 0%, #ff0055 60%, #00f0ff 100%) !important;
+        }
+
+        @keyframes chargeJitter {
+            0% { transform: translateZ(45px) scale(0.9); }
+            100% { transform: translateZ(55px) scale(1.25); }
+        }
+
         .mech-label {
             position: absolute;
-            bottom: -35px;
+            bottom: -45px;
             font-size: 11px;
             letter-spacing: 1.5px;
             color: #00f0ff;
@@ -71,7 +96,7 @@
             width: 100%;
         }
 
-        /* สไตล์เส้นลำแสงเลเซอร์ */
+        /* --- ลำแสงปกติ (ปุ่ม R) --- */
         .laser-beam {
             position: fixed;
             height: 6px;
@@ -81,11 +106,9 @@
             pointer-events: none;
             z-index: 9999;
             transform-origin: 0 50%;
-            opacity: 1;
             transition: opacity 0.2s ease-out;
         }
 
-        /* สไตล์เอฟเฟกต์การระเบิดที่ปลายทาง */
         .laser-impact {
             position: fixed;
             width: 30px;
@@ -97,6 +120,49 @@
             z-index: 9999;
             transform: translate(-50%, -50%);
             animation: impactAnim 0.3s ease-out forwards;
+        }
+
+        /* --- มหาลำแสงยักษ์ทะลุจอ (ปุ่ม V) --- */
+        .mega-beam {
+            position: fixed;
+            height: 45px;
+            background: linear-gradient(90deg, #ffffff, #00f0ff, #ff0055, #ffffff);
+            box-shadow: 0 0 20px #ffffff, 0 0 50px #00f0ff, 0 0 100px #ff0055, 0 0 150px #00f0ff;
+            border-radius: 20px;
+            pointer-events: none;
+            z-index: 9999;
+            transform-origin: 0 50%;
+            transition: opacity 0.4s ease-out, height 0.4s ease-out;
+        }
+
+        /* วงแหวนพลังงานกระแทก (Shockwave) */
+        .shockwave {
+            position: fixed;
+            width: 10px;
+            height: 10px;
+            border: 4px solid #00f0ff;
+            box-shadow: 0 0 30px #00f0ff, inset 0 0 30px #ff0055;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9998;
+            transform: translate(-50%, -50%);
+            animation: shockwaveExpand 0.5s cubic-bezier(0.1, 0.8, 0.3, 1) forwards;
+        }
+
+        @keyframes shockwaveExpand {
+            0% { width: 20px; height: 20px; opacity: 1; border-width: 10px; }
+            100% { width: 350px; height: 350px; opacity: 0; border-width: 1px; }
+        }
+
+        /* แสงแฟลชสว่างวาบทั่วหน้าจอตอนยิง */
+        .screen-flash {
+            position: fixed;
+            top: 0; left: 0; width: 100vw; height: 100vh;
+            background: rgba(0, 240, 255, 0.35);
+            pointer-events: none;
+            z-index: 9997;
+            opacity: 1;
+            transition: opacity 0.3s ease-out;
         }
 
         @keyframes impactAnim {
@@ -111,7 +177,11 @@
     <div class="mech-model-container">
         <div class="mech-card" id="mechCard">
             <div class="mech-core" id="mechCore"></div>
-            <span class="mech-label">JAEGER CORE v3.0<br><small style="color: #ff0055; font-size: 10px;">[กด R เพื่อยิงลำแสง]</small></span>
+            <span class="mech-label">
+                JAEGER CORE v3.0<br>
+                <small style="color: #00f0ff; font-size: 10px;">[R: ยิงเลเซอร์]</small> | 
+                <small style="color: #ff0055; font-size: 10px;">[V: ชาร์จมหาลำแสง]</small>
+            </span>
         </div>
     </div>
 
@@ -177,15 +247,16 @@
         </div>
     </footer>
 
-    <!-- สคริปต์คำนวณตำแหน่งเมาส์ การหันหน้า และการยิงเลเซอร์ -->
+    <!-- สคริปต์คำนวณการหันดวงตา การยิงปุ่ม R และการชาร์จยิงมหาลำแสงปุ่ม V -->
     <script>
         const mechCard = document.getElementById('mechCard');
         const mechCore = document.getElementById('mechCore');
         
         let currentMouseX = window.innerWidth / 2;
         let currentMouseY = window.innerHeight / 2;
+        let isCharging = false;
 
-        // ติดตามตำแหน่งเมาส์ตลอดเวลา
+        // ติดตามพิกัดเมาส์
         document.addEventListener('mousemove', (e) => {
             currentMouseX = e.clientX;
             currentMouseY = e.clientY;
@@ -204,30 +275,38 @@
             const coreMoveY = (deltaY / window.innerHeight) * 35;
 
             mechCard.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
-            mechCore.style.transform = `translate3d(${coreMoveX}px, ${coreMoveY}px, 40px)`;
-        });
-
-        // ดักจับการกดปุ่ม 'R' หรือ 'r' เพื่อยิงลำแสง
-        window.addEventListener('keydown', (e) => {
-            if (e.key === 'r' || e.key === 'R') {
-                if (e.repeat) return; // ป้องกันการยิงค้างเมื่อกดปุ่มแช่ไว้
-                fireLaser(currentMouseX, currentMouseY);
+            
+            if (!isCharging) {
+                mechCore.style.transform = `translate3d(${coreMoveX}px, ${coreMoveY}px, 40px)`;
             }
         });
 
-        // ฟังก์ชันสร้างและยิงลำแสง
-        function fireLaser(targetX, targetY) {
+        // ดักจับการกดคีย์บอร์ด
+        window.addEventListener('keydown', (e) => {
+            if (e.repeat) return;
+
+            // กด R = ยิงเลเซอร์ปกติ
+            if (e.key === 'r' || e.key === 'R') {
+                fireNormalLaser(currentMouseX, currentMouseY);
+            }
+
+            // กด V = ชาร์จยิงมหาลำแสงยักษ์ทะลุจอ
+            if ((e.key === 'v' || e.key === 'V') && !isCharging) {
+                chargeAndFireMegaLaser(currentMouseX, currentMouseY);
+            }
+        });
+
+        // --- 1. ฟังก์ชันยิงเลเซอร์ปกติ (ปุ่ม R) ---
+        function fireNormalLaser(targetX, targetY) {
             const coreRect = mechCore.getBoundingClientRect();
             const startX = coreRect.left + coreRect.width / 2;
             const startY = coreRect.top + coreRect.height / 2;
 
-            // คำนวณระยะทางและองศาไปยังเป้าหมาย
             const deltaX = targetX - startX;
             const deltaY = targetY - startY;
             const distance = Math.hypot(deltaX, deltaY);
             const angle = Math.atan2(deltaY, deltaX) * (180 / Math.PI);
 
-            // สร้าง Element ลำแสง
             const laser = document.createElement('div');
             laser.className = 'laser-beam';
             laser.style.left = `${startX}px`;
@@ -235,7 +314,6 @@
             laser.style.width = `${distance}px`;
             laser.style.transform = `rotate(${angle}deg)`;
 
-            // สร้าง Element เอฟเฟกต์ระเบิดปลายทาง
             const impact = document.createElement('div');
             impact.className = 'laser-impact';
             impact.style.left = `${targetX}px`;
@@ -244,10 +322,8 @@
             document.body.appendChild(laser);
             document.body.appendChild(impact);
 
-            // เรืองแสงดวงตาชั่วขณะตอนยิง
             mechCore.style.boxShadow = '0 0 50px #ff0055, 0 0 100px #ffffff';
 
-            // ล้างภาพเอฟเฟกต์ออกจากหน้าจอเมื่อยิงเสร็จ
             setTimeout(() => {
                 laser.style.opacity = '0';
                 mechCore.style.boxShadow = '0 0 25px #00f0ff';
@@ -256,6 +332,69 @@
                     impact.remove();
                 }, 200);
             }, 150);
+        }
+
+        // --- 2. ฟังก์ชันชาร์จยิงมหาลำแสงอลังการ (ปุ่ม V) ---
+        function chargeAndFireMegaLaser(targetX, targetY) {
+            isCharging = true;
+            mechCore.classList.add('charging-core');
+
+            // สร้าง Shockwave ชาร์จพลังงานหดเข้าสู่แกนกลาง
+            const coreRect = mechCore.getBoundingClientRect();
+            const startX = coreRect.left + coreRect.width / 2;
+            const startY = coreRect.top + coreRect.height / 2;
+
+            // ระยะชาร์จพลังงาน 400ms ก่อนปลดปล่อยมหาลำแสง
+            setTimeout(() => {
+                mechCore.classList.remove('charging-core');
+
+                // คำนวณองศาและความยาวแบบพุ่งเลยทะลุออกนอกหน้าจอ (3000px)
+                const deltaX = targetX - startX;
+                const deltaY = targetY - startY;
+                const angle = Math.atan2(deltaY, deltaX) * (180 / Math.PI);
+                const superDistance = 3000; 
+
+                // 1. สร้างมหาลำแสงยักษ์
+                const megaBeam = document.createElement('div');
+                megaBeam.className = 'mega-beam';
+                megaBeam.style.left = `${startX}px`;
+                megaBeam.style.top = `${startY}px`;
+                megaBeam.style.width = `${superDistance}px`;
+                megaBeam.style.transform = `rotate(${angle}deg)`;
+
+                // 2. สร้าง Shockwave คลื่นระเบิดทรงกลมที่จุดยิง
+                const shock = document.createElement('div');
+                shock.className = 'shockwave';
+                shock.style.left = `${startX}px`;
+                shock.style.top = `${startY}px`;
+
+                // 3. แสงวาบทั่วหน้าจอ (Screen Flash)
+                const flash = document.createElement('div');
+                flash.className = 'screen-flash';
+
+                document.body.appendChild(megaBeam);
+                document.body.appendChild(shock);
+                document.body.appendChild(flash);
+
+                // 4. สั่นหน้าจอสร้างความรุนแรง (Screen Shake)
+                document.body.classList.add('screen-shake');
+
+                // ค่อยๆ จางเอฟเฟกต์ทั้งหมดลง
+                setTimeout(() => {
+                    flash.style.opacity = '0';
+                    megaBeam.style.opacity = '0';
+                    megaBeam.style.height = '0px';
+                    document.body.classList.remove('screen-shake');
+
+                    setTimeout(() => {
+                        megaBeam.remove();
+                        shock.remove();
+                        flash.remove();
+                        isCharging = false;
+                    }, 400);
+                }, 350);
+
+            }, 400);
         }
     </script>
 </body>
