@@ -3,17 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>หน้าแรก | Student Portfolio</title>
+    <title>Student Portfolio | หน้าแรก</title>
+    <!-- สำคัญ: ใช้ Relative Path ห้ามมี / นำหน้า style.css -->
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600&display=swap" rel="stylesheet">
 </head>
 <body>
 
-    <!-- Navigation Bar -->
-    <header class="navbar-container">
-        <nav class="navbar">
+    <!-- Header & Navigation -->
+    <header class="navbar-wrapper">
+        <div class="container navbar">
             <a href="index.html" class="logo">PORTFOLIO<span>.M3</span></a>
             <ul class="nav-menu">
                 <li><a href="index.html" class="nav-link active">หน้าแรก</a></li>
@@ -22,78 +23,54 @@
                 <li><a href="hobby.html" class="nav-link">งานอดิเรก</a></li>
                 <li><a href="contact.html" class="nav-link">ติดต่อ</a></li>
             </ul>
-        </nav>
+        </div>
     </header>
 
-    <!-- Hero Section -->
+    <!-- Main Content -->
     <main class="container">
-        <section class="hero-section">
+        <!-- Hero Section -->
+        <section class="hero">
             <div class="hero-text">
                 <span class="badge">STUDENT PORTFOLIO</span>
-                <h1 class="hero-title">สวัสดีครับ/ค่ะ! <br>ฉันชื่อ <span class="highlight">[กรอกชื่อ-นามสกุล]</span></h1>
-                <p class="hero-subtitle">นักเรียนชั้นมัธยมศึกษาปีที่ 3 ที่มีความสนใจในด้านเทคโนโลยี การเรียนรู้สิ่งใหม่ๆ และการพัฒนาตนเองอย่างต่อเนื่อง</p>
-                <div class="hero-buttons">
+                <h1>สวัสดีครับ/ค่ะ <br>ยินดีต้อนรับสู่<span>เว็บแนะนำตัวเอง</span></h1>
+                <p>เว็บไซต์นี้จัดทำขึ้นสำหรับโครงงานวิชาคอมพิวเตอร์ ชั้นมัธยมศึกษาปีที่ 3 รวบรวมประวัติ ผลงาน และความสนใจของฉัน</p>
+                <div class="hero-btns">
                     <a href="profile.html" class="btn btn-primary">รู้จักฉันมากขึ้น</a>
-                    <a href="hobby.html" class="btn btn-outline">ดูงานอดิเรกของฉัน</a>
+                    <a href="contact.html" class="btn btn-secondary">ติดต่อฉัน</a>
                 </div>
             </div>
-            <div class="hero-image-wrapper">
-                <div class="blob-bg"></div>
-                <img src="https://placehold.co/400x400/1976D2/FFFFFF?text=My+Profile" alt="รูปโปรไฟล์ของฉัน" class="hero-img">
-                <div class="floating-badge">
-                    <span class="badge-icon">🎓</span>
-                    <div>
-                        <strong>นักเรียนชั้น ม.3</strong>
-                        <p>[กรอกชื่อโรงเรียน]</p>
-                    </div>
-                </div>
+            <div class="hero-image">
+                <img src="https://placehold.co/350x350/1976D2/FFFFFF?text=My+Profile" alt="รูปโปรไฟล์">
             </div>
         </section>
 
-        <!-- Quick Highlight Section -->
-        <section class="features-grid">
-            <div class="feature-card">
-                <div class="feature-icon">👤</div>
-                <h3>ข้อมูลส่วนตัว</h3>
-                <p>ทำความรู้จักประวัติ นิสัย และเป้าหมายชีวิตของฉัน</p>
-                <a href="profile.html" class="card-link">อ่านต่อ →</a>
+        <!-- Feature Cards Grid -->
+        <section class="card-grid">
+            <div class="card">
+                <div class="card-icon">👤</div>
+                <h3>ประวัติส่วนตัว</h3>
+                <p>ข้อมูลทั่วไป วันเกิด จังหวัด และตัวตนของฉัน</p>
+                <a href="profile.html" class="link-text">ดูข้อมูลเพิ่มเติม →</a>
             </div>
-            <div class="feature-card">
-                <div class="feature-icon">📚</div>
+            <div class="card">
+                <div class="card-icon">🎓</div>
                 <h3>ประวัติการศึกษา</h3>
-                <p>เส้นทางการศึกษา ผลงาน และวิชาที่ฉันชื่นชอบ</p>
-                <a href="education.html" class="card-link">อ่านต่อ →</a>
+                <p>เส้นทางการศึกษา แผนการเรียน และวิชาที่ชอบ</p>
+                <a href="education.html" class="link-text">ดูข้อมูลเพิ่มเติม →</a>
             </div>
-            <div class="feature-card">
-                <div class="feature-icon">🎨</div>
+            <div class="card">
+                <div class="card-icon">🎨</div>
                 <h3>งานอดิเรก</h3>
-                <p>กิจกรรมยามว่าง กีฬา เกม และความสนใจพิเศษ</p>
-                <a href="hobby.html" class="card-link">อ่านต่อ →</a>
+                <p>กิจกรรมยามว่าง กีฬา เกม และสิ่งที่สนใจ</p>
+                <a href="hobby.html" class="link-text">ดูข้อมูลเพิ่มเติม →</a>
             </div>
         </section>
     </main>
 
     <!-- Footer -->
     <footer class="footer">
-        <div class="footer-container">
-            <div class="footer-info">
-                <h3>PORTFOLIO<span>.M3</span></h3>
-                <p>เว็บไซต์แนะนำตัวเอง โครงงานวิชาคอมพิวเตอร์</p>
-                <p>จัดทำโดย [กรอกชื่อ-นามสกุล] ชั้น ม.3/[กรอกห้อง]</p>
-            </div>
-            <div class="footer-links">
-                <h4>เมนูแนะนำ</h4>
-                <ul>
-                    <li><a href="index.html">หน้าแรก</a></li>
-                    <li><a href="profile.html">ประวัติส่วนตัว</a></li>
-                    <li><a href="education.html">การศึกษา</a></li>
-                    <li><a href="hobby.html">งานอดิเรก</a></li>
-                    <li><a href="contact.html">ติดต่อ</a></li>
-                </ul>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <p>&copy; 2026 Student Portfolio Project. All Rights Reserved.</p>
+        <div class="container footer-content">
+            <p>&copy; 2026 Student Portfolio Project | วิชาคอมพิวเตอร์ ม.3</p>
         </div>
     </footer>
 
