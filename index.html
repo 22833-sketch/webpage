@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Student Portfolio | หน้าแรก</title>
-    <!-- สำคัญ: ใช้ Relative Path ห้ามมี / นำหน้า style.css -->
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -19,9 +18,121 @@
             background-attachment: fixed;
             color: #ffffff;
             overflow-x: hidden;
+            margin: 0;
+            padding: 0;
+            font-family: 'Kanit', sans-serif;
         }
 
-        /* เอฟเฟกต์หน้าจอสั่นสะเทือนเมื่อยิงมหาลำแสง */
+        /* --- หน้าต่าง INTRO FULLSCREEN ตอนเข้าสู่เว็บไซต์ --- */
+        .site-intro-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-color: #030712;
+            z-index: 99999;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.8s ease, visibility 0.8s ease;
+        }
+
+        .site-intro-overlay.hidden {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
+
+        .intro-header {
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .intro-header h2 {
+            color: #00f0ff;
+            font-size: 24px;
+            font-weight: 600;
+            letter-spacing: 3px;
+            margin: 0 0 5px 0;
+            text-shadow: 0 0 15px #00f0ff;
+        }
+
+        .intro-header p {
+            color: #94a3b8;
+            font-size: 14px;
+            margin: 0;
+        }
+
+        .intro-container {
+            position: relative;
+            width: 88%;
+            max-width: 900px;
+            aspect-ratio: 16 / 9;
+            border: 2px solid #00f0ff;
+            border-radius: 16px;
+            box-shadow: 0 0 40px rgba(0, 240, 255, 0.5), inset 0 0 20px rgba(0, 240, 255, 0.2);
+            overflow: hidden;
+            background: #000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .intro-video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .intro-actions {
+            margin-top: 20px;
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .enter-btn {
+            padding: 12px 36px;
+            background: linear-gradient(135deg, #00f0ff, #0055ff);
+            color: #ffffff;
+            border: none;
+            border-radius: 30px;
+            font-size: 17px;
+            font-family: 'Kanit', sans-serif;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 0 25px rgba(0, 240, 255, 0.6);
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .enter-btn:hover {
+            transform: scale(1.06);
+            box-shadow: 0 0 40px rgba(0, 240, 255, 1);
+            background: linear-gradient(135deg, #ff0055, #00f0ff);
+        }
+
+        .sound-toggle-btn {
+            padding: 12px 20px;
+            background: rgba(15, 23, 42, 0.85);
+            border: 1px solid #00f0ff;
+            color: #00f0ff;
+            border-radius: 30px;
+            font-size: 14px;
+            font-family: 'Kanit', sans-serif;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .sound-toggle-btn:hover {
+            background: #00f0ff;
+            color: #0a0f19;
+            box-shadow: 0 0 15px #00f0ff;
+        }
+
+        /* --- เอฟเฟกต์หุ่นยนต์ & ลำแสง --- */
         .screen-shake {
             animation: shakeAnim 0.35s cubic-bezier(.36,.07,.19,.97) both;
         }
@@ -34,7 +145,6 @@
             80% { transform: translate(8px, -4px); }
         }
 
-        /* โมเดลหุ่นยนต์ 3D ในพื้นหลัง */
         .mech-model-container {
             position: fixed;
             top: 20%;
@@ -61,7 +171,6 @@
             transform-style: preserve-3d;
         }
 
-        /* ดวงตา/แกนพลังงานหุ่นยนต์ */
         .mech-core {
             width: 90px;
             height: 90px;
@@ -95,7 +204,6 @@
             width: 100%;
         }
 
-        /* --- ลำแสงปกติ (ปุ่ม R) --- */
         .laser-beam {
             position: fixed;
             height: 6px;
@@ -121,7 +229,6 @@
             animation: impactAnim 0.3s ease-out forwards;
         }
 
-        /* --- มหาลำแสงยักษ์ทะลุจอ (ปุ่ม V) --- */
         .mega-beam {
             position: fixed;
             height: 45px;
@@ -166,87 +273,27 @@
             0% { transform: translate(-50%, -50%) scale(0.3); opacity: 1; }
             100% { transform: translate(-50%, -50%) scale(2.5); opacity: 0; }
         }
-
-        /* --- สไตล์ของหน้าต่าง INTRO POPUP VIDEO --- */
-        .intro-modal {
-            display: none;
-            position: fixed;
-            top: 0; left: 0;
-            width: 100vw; height: 100vh;
-            background: rgba(5, 10, 20, 0.95);
-            backdrop-filter: blur(12px);
-            z-index: 10000;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .intro-modal.active {
-            display: flex;
-        }
-
-        .intro-title {
-            color: #00f0ff;
-            font-size: 22px;
-            font-weight: 600;
-            letter-spacing: 2px;
-            margin-bottom: 15px;
-            text-shadow: 0 0 12px #00f0ff;
-        }
-
-        .video-box {
-            width: 85%;
-            max-width: 850px;
-            aspect-ratio: 16 / 9;
-            border: 2px solid #00f0ff;
-            border-radius: 12px;
-            box-shadow: 0 0 30px rgba(0, 240, 255, 0.5);
-            overflow: hidden;
-            background: #000;
-        }
-
-        .video-box iframe {
-            width: 100%;
-            height: 100%;
-            border: none;
-        }
-
-        .skip-btn {
-            margin-top: 20px;
-            padding: 12px 32px;
-            background: linear-gradient(135deg, #00f0ff, #0055ff);
-            color: #ffffff;
-            border: none;
-            border-radius: 30px;
-            font-size: 16px;
-            font-family: 'Kanit', sans-serif;
-            font-weight: 500;
-            cursor: pointer;
-            box-shadow: 0 0 20px rgba(0, 240, 255, 0.6);
-            transition: all 0.25s ease;
-            text-decoration: none;
-        }
-
-        .skip-btn:hover {
-            transform: scale(1.08);
-            box-shadow: 0 0 35px rgba(0, 240, 255, 1);
-            background: linear-gradient(135deg, #ff0055, #00f0ff);
-        }
     </style>
 </head>
 <body>
 
-    <!-- หน้าต่าง INTRO POPUP (Pacific Rim Edit + มีเสียง) -->
-    <div class="intro-modal" id="introModal">
-        <div class="intro-title">🎬 PACIFIC RIM EDIT INTRO</div>
-        <div class="video-box">
-            <!-- สิทธิ์การเล่น autoplay พร้อมเสียงโดยตรงผ่าน iframe -->
-            <iframe id="introIframe" src="" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>
+    <div class="site-intro-overlay" id="siteIntroOverlay">
+        <div class="intro-header">
+            <h2>⚡ PACIFIC RIM PORTFOLIO INTRO</h2>
+            <p>ต้อนรับเข้าสู่เว็บไซต์โครงงานคอมพิวเตอร์ ม.3</p>
         </div>
-        <button class="skip-btn" id="enterProfileBtn">ข้าม / เข้าสู่หน้าประวัติส่วนตัว →</button>
+        <div class="intro-container">
+            <video id="introVideo" class="intro-video" autoplay muted playsinline>
+                <source src="Pacific Rim __ Cool For The Summer __ (EDIT) 4K.mp4" type="video/mp4">
+                เบราว์เซอร์ของคุณไม่รองรับการเล่นวิดีโอนี้
+            </video>
+        </div>
+        <div class="intro-actions">
+            <button class="sound-toggle-btn" id="soundToggleBtn">🔊 เปิดเสียงเพลง</button>
+            <button class="enter-btn" id="enterSiteBtn">เข้าสู่เว็บไซต์ →</button>
+        </div>
     </div>
 
-    <!-- โมเดล Mech Core ลอยล่องในพื้นหลัง -->
     <div class="mech-model-container">
         <div class="mech-card" id="mechCard">
             <div class="mech-core" id="mechCore"></div>
@@ -258,13 +305,12 @@
         </div>
     </div>
 
-    <!-- Header & Navigation -->
     <header class="navbar-wrapper">
         <div class="container navbar">
             <a href="index.html" class="logo">PORTFOLIO<span>.M3</span></a>
             <ul class="nav-menu">
                 <li><a href="index.html" class="nav-link active">หน้าแรก</a></li>
-                <li><a href="profile.html" class="nav-link profile-trigger">ประวัติส่วนตัว</a></li>
+                <li><a href="profile.html" class="nav-link">ประวัติส่วนตัว</a></li>
                 <li><a href="education.html" class="nav-link">การศึกษา</a></li>
                 <li><a href="hobby.html" class="nav-link">งานอดิเรก</a></li>
                 <li><a href="contact.html" class="nav-link">ติดต่อ</a></li>
@@ -272,16 +318,14 @@
         </div>
     </header>
 
-    <!-- Main Content -->
     <main class="container">
-        <!-- Hero Section -->
         <section class="hero">
             <div class="hero-text">
                 <span class="badge">STUDENT PORTFOLIO</span>
                 <h1>สวัสดีครับ <br>ยินดีต้อนรับสู่<span>เว็บแนะนำตัวเอง</span></h1>
                 <p>เว็บไซต์นี้จัดทำขึ้นสำหรับโครงงานวิชาคอมพิวเตอร์ ชั้นมัธยมศึกษาปีที่ 3 รวบรวมประวัติ ผลงาน และความสนใจของฉัน</p>
                 <div class="hero-btns">
-                    <a href="profile.html" class="btn btn-primary profile-trigger">รู้จักฉันมากขึ้น</a>
+                    <a href="profile.html" class="btn btn-primary">รู้จักฉันมากขึ้น</a>
                     <a href="contact.html" class="btn btn-secondary">ติดต่อฉัน</a>
                 </div>
             </div>
@@ -290,13 +334,12 @@
             </div>
         </section>
 
-        <!-- Feature Cards Grid -->
         <section class="card-grid">
             <div class="card">
                 <div class="card-icon">👤</div>
                 <h3>ประวัติส่วนตัว</h3>
                 <p>ข้อมูลทั่วไป วันเกิด3/5/2555 จังหวัดเชียงใหม่0</p>
-                <a href="profile.html" class="link-text profile-trigger">ดูข้อมูลเพิ่มเติม →</a>
+                <a href="profile.html" class="link-text">ดูข้อมูลเพิ่มเติม →</a>
             </div>
             <div class="card">
                 <div class="card-icon">🎓</div>
@@ -313,15 +356,57 @@
         </section>
     </main>
 
-    <!-- Footer -->
     <footer class="footer">
         <div class="container footer-content">
             <p>&copy; 2026 Student Portfolio Project | วิชาคอมพิวเตอร์ ม.3</p>
         </div>
     </footer>
 
-    <!-- สคริปต์การทำงาน -->
     <script>
+        const introOverlay = document.getElementById('siteIntroOverlay');
+        const introVideo = document.getElementById('introVideo');
+        const enterSiteBtn = document.getElementById('enterSiteBtn');
+        const soundToggleBtn = document.getElementById('soundToggleBtn');
+
+        // เริ่มเล่นวิดีโออินโทรทันทีที่โหลดหน้าเว็บ
+        window.addEventListener('DOMContentLoaded', () => {
+            introVideo.play().catch(err => {
+                console.log("Autoplay notice:", err);
+            });
+        });
+
+        // เมื่อวิดีโอเล่นจนจบ ให้ซ่อนอินโทรเข้าสู่เว็บไซต์อัตโนมัติ
+        introVideo.addEventListener('ended', () => {
+            closeIntroOverlay();
+        });
+
+        // กดปุ่มเพื่อข้ามหรือเข้าสู่เว็บไซต์ทันที
+        enterSiteBtn.addEventListener('click', () => {
+            closeIntroOverlay();
+        });
+
+        // ฟังก์ชันซ่อนหน้าต่างอินโทร
+        function closeIntroOverlay() {
+            introVideo.pause();
+            introOverlay.classList.add('hidden');
+        }
+
+        // ปุ่มควบคุมเปิด/ปิดเสียงวิดีโอ
+        soundToggleBtn.addEventListener('click', () => {
+            if (introVideo.muted) {
+                introVideo.muted = false;
+                soundToggleBtn.innerHTML = '🔇 ปิดเสียง';
+                soundToggleBtn.style.background = '#00f0ff';
+                soundToggleBtn.style.color = '#0a0f19';
+            } else {
+                introVideo.muted = true;
+                soundToggleBtn.innerHTML = '🔊 เปิดเสียงเพลง';
+                soundToggleBtn.style.background = 'rgba(15, 23, 42, 0.85)';
+                soundToggleBtn.style.color = '#00f0ff';
+            }
+        });
+
+        // --- ระบบ 3D Mech Core & ยิงลำแสง (R/V) ---
         const mechCard = document.getElementById('mechCard');
         const mechCore = document.getElementById('mechCore');
         
@@ -329,30 +414,6 @@
         let currentMouseY = window.innerHeight / 2;
         let isCharging = false;
 
-        // URL วิดีโอของคุณ พร้อมตั้งค่า autoplay=1 (เปิดเสียงตามปกติเนื่องจากถูกสั่งเปิดจากการกดคลิกของผู้ใช้)
-        const youtubeEditUrl = "https://www.youtube.com/embed/Av8Nj2laAYc?autoplay=1&enablejsapi=1";
-
-        // ดักจับการกดปุ่มประวัติส่วนตัวเพื่อแสดง Pop-up อินโทรวิดีโอพร้อมเสียง
-        const profileTriggers = document.querySelectorAll('.profile-trigger');
-        const introModal = document.getElementById('introModal');
-        const introIframe = document.getElementById('introIframe');
-        const enterProfileBtn = document.getElementById('enterProfileBtn');
-
-        profileTriggers.forEach(trigger => {
-            trigger.addEventListener('click', (e) => {
-                e.preventDefault();
-                introIframe.src = youtubeEditUrl; // โหลดวิดีโอพร้อมเสียงแบบอัตโนมัติ
-                introModal.classList.add('active');
-            });
-        });
-
-        // ปุ่มกดข้าม/เข้าสู่หน้าประวัติส่วนตัว
-        enterProfileBtn.addEventListener('click', () => {
-            introIframe.src = ""; // หยุดเสียงและวิดีโอเมื่อปิดหน้าต่าง
-            window.location.href = 'profile.html';
-        });
-
-        // ติดตามพิกัดเมาส์
         document.addEventListener('mousemove', (e) => {
             currentMouseX = e.clientX;
             currentMouseY = e.clientY;
@@ -377,7 +438,6 @@
             }
         });
 
-        // ดักจับคีย์บอร์ด R และ V
         window.addEventListener('keydown', (e) => {
             if (e.repeat) return;
 
@@ -390,7 +450,6 @@
             }
         });
 
-        // 1. ฟังก์ชันยิงเลเซอร์ปกติ (ปุ่ม R)
         function fireNormalLaser(targetX, targetY) {
             const coreRect = mechCore.getBoundingClientRect();
             const startX = coreRect.left + coreRect.width / 2;
@@ -428,7 +487,6 @@
             }, 150);
         }
 
-        // 2. ฟังก์ชันชาร์จยิงมหาลำแสงอลังการ (ปุ่ม V)
         function chargeAndFireMegaLaser(targetX, targetY) {
             isCharging = true;
             mechCore.classList.add('charging-core');
