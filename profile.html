@@ -3,20 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ประวัติส่วนตัว - Student Portfolio M.3</title>
+    <title>ประวัติส่วนตัว | Student Portfolio</title>
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
 
-    <!-- Header Navigation -->
+    <!-- Navigation Bar -->
     <header class="navbar-container">
         <nav class="navbar">
-            <a href="index.html" class="logo">
-                <span class="logo-badge">M.3</span> Portfolio
-            </a>
+            <a href="index.html" class="logo">PORTFOLIO<span>.M3</span></a>
             <ul class="nav-menu">
                 <li><a href="index.html" class="nav-link">หน้าแรก</a></li>
                 <li><a href="profile.html" class="nav-link active">ประวัติส่วนตัว</a></li>
@@ -27,87 +25,69 @@
         </nav>
     </header>
 
-    <main class="container section">
+    <main class="container">
         <div class="page-header">
-            <h1 class="page-title">ประวัติส่วนตัว</h1>
-            <p class="page-subtitle">Personal Information & About Me</p>
+            <h1>ประวัติส่วนตัว</h1>
+            <p>ทำความรู้จักตัวตนและเรื่องราวของฉัน</p>
         </div>
 
-        <div class="profile-asymmetric-layout">
-            <!-- Sticky Sidebar Profile -->
-            <aside class="profile-sticky-card">
-                <div class="profile-image-container">
-                    <img src="https://placehold.co/350x350/1976d2/ffffff?text=Profile+Image" alt="รูปโปรไฟล์ของฉัน" class="profile-img-lg">
+        <section class="profile-layout">
+            <!-- Left Side: Avatar Card -->
+            <div class="profile-sidebar">
+                <div class="profile-card-main">
+                    <img src="https://placehold.co/300x300/1976D2/FFFFFF?text=Profile+Pic" alt="รูปโปรไฟล์ของฉัน" class="profile-avatar">
+                    <h2>[กรอกชื่อ-นามสกุล]</h2>
+                    <span class="profile-tag">นักเรียนชั้นมัธยมศึกษาปีที่ 3</span>
+                    <div class="profile-quick-info">
+                        <p>📍 จังหวัด[กรอกจังหวัด]</p>
+                        <p>🏫 [กรอกชื่อโรงเรียน]</p>
+                    </div>
                 </div>
-                <h2>[กรอกชื่อ-นามสกุล]</h2>
-                <span class="badge-pill">ชื่อเล่น: [กรอกชื่อเล่น]</span>
-                <div class="sticky-info-list">
-                    <div class="info-item"><span>🎂 วันเกิด:</span> [กรอกวันเกิด]</div>
-                    <div class="info-item"><span>⌛ อายุ:</span> [กรอกอายุ] ปี</div>
-                    <div class="info-item"><span>📍 จังหวัด:</span> [กรอกจังหวัด]</div>
-                </div>
-            </aside>
+            </div>
 
-            <!-- Main Profile Content -->
-            <section class="profile-content-stack">
-                <div class="content-card">
-                    <h2>📝 เกี่ยวกับฉัน (About Me)</h2>
-                    <p class="bio-paragraph">
-                        สวัสดีครับ/ค่ะ ฉันเป็นนักเรียนชั้นมัธยมศึกษาปีที่ 3 ที่มีความมุ่งมั่นในการศึกษาและชอบเรียนรู้สิ่งใหม่ๆ อยู่เสมอ โดยเฉพาะทางด้านคอมพิวเตอร์และเทคโนโลยี ฉันชอบความท้าทายในการแก้ปัญหา และการนำความรู้มาประยุกต์ใช้สร้างสรรค์ผลงานชิ้นต่างๆ
-                    </p>
-                </div>
-
-                <div class="content-card">
-                    <h2>📋 ข้อมูลส่วนตัวโดยละเอียด</h2>
-                    <div class="table-responsive">
-                        <table class="styled-table">
-                            <tr>
-                                <th>ชื่อ-นามสกุล</th>
-                                <td>[กรอกชื่อ-นามสกุล]</td>
-                            </tr>
-                            <tr>
-                                <th>ระดับชั้น</th>
-                                <td>มัธยมศึกษาปีที่ 3/[กรอกห้อง]</td>
-                            </tr>
-                            <tr>
-                                <th>โรงเรียน</th>
-                                <td>[กรอกชื่อโรงเรียน]</td>
-                            </tr>
-                            <tr>
-                                <th>วิชาที่ชอบ</th>
-                                <td>[กรอกวิชาที่ชอบ]</td>
-                            </tr>
-                            <tr>
-                                <th>ความสนใจพิเศษ</th>
-                                <td>[กรอกความสนใจ]</td>
-                            </tr>
-                        </table>
+            <!-- Right Side: Detailed Grid Info -->
+            <div class="profile-content">
+                <div class="info-grid">
+                    <div class="info-card">
+                        <div class="info-label">ชื่อเล่น</div>
+                        <div class="info-value">[กรอกชื่อเล่น]</div>
+                    </div>
+                    <div class="info-card">
+                        <div class="info-label">อายุ</div>
+                        <div class="info-value">[กรอกอายุ] ปี</div>
+                    </div>
+                    <div class="info-card">
+                        <div class="info-label">วันเกิด</div>
+                        <div class="info-value">[กรอกวันเกิด]</div>
+                    </div>
+                    <div class="info-card">
+                        <div class="info-label">จังหวัด</div>
+                        <div class="info-value">[กรอกจังหวัด]</div>
                     </div>
                 </div>
 
-                <div class="content-card">
-                    <h2>⭐ จุดเด่น & ความสามารถ</h2>
-                    <div class="skills-grid">
-                        <div class="skill-chip">💡 คิดวิเคราะห์แก้ปัญหา</div>
-                        <div class="skill-chip">💻 พื้นฐาน HTML / CSS</div>
-                        <div class="skill-chip">🎨 ออกแบบเว็บไซต์เบื้องต้น</div>
-                        <div class="skill-chip">🤝 การทำงานเป็นทีม</div>
+                <!-- About Me Box -->
+                <div class="about-card">
+                    <h2>💡 เกี่ยวกับฉัน</h2>
+                    <p>สวัสดีครับ/ค่ะ ฉันเป็นนักเรียนชั้นมัธยมศึกษาปีที่ 3 ที่มีความสนใจและกระตือรือร้นในการเรียนรู้เทคโนโลยีใหม่ๆ ชอบแก้ปัญหา มีความตั้งใจในการทำงานร่วมกับผู้อื่น และพร้อมเปิดรับความรู้ใหม่ๆ อยู่เสมอ</p>
+                    <div class="motto-box">
+                        <strong>คติประจำใจ:</strong> "ความพยายามไม่เคยทำร้ายคนที่มีความมุ่งมั่น"
                     </div>
                 </div>
-            </section>
-        </div>
+            </div>
+        </section>
     </main>
 
     <!-- Footer -->
     <footer class="footer">
-        <div class="container footer-content">
+        <div class="footer-container">
             <div class="footer-info">
-                <h3>Portfolio.M3</h3>
-                <p>โครงงานวิชาคอมพิวเตอร์ - ชั้นมัธยมศึกษาปีที่ 3</p>
-                <p>จัดทำโดย: [กรอกชื่อ-นามสกุล] ชั้น ม.3/[กรอกห้อง]</p>
+                <h3>PORTFOLIO<span>.M3</span></h3>
+                <p>เว็บไซต์แนะนำตัวเอง โครงงานวิชาคอมพิวเตอร์</p>
+                <p>จัดทำโดย [กรอกชื่อ-นามสกุล] ชั้น ม.3/[กรอกห้อง]</p>
             </div>
             <div class="footer-links">
-                <h4>เมนูด่วน</h4>
+                <h4>เมนูแนะนำ</h4>
                 <ul>
                     <li><a href="index.html">หน้าแรก</a></li>
                     <li><a href="profile.html">ประวัติส่วนตัว</a></li>
