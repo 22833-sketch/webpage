@@ -1,78 +1,223 @@
-<!DOCTYPE html>
-<html lang="th">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Student Portfolio | หน้าแรก</title>
-    <!-- สำคัญ: ใช้ Relative Path ห้ามมี / นำหน้า style.css -->
-    <link rel="stylesheet" href="style.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600&display=swap" rel="stylesheet">
-</head>
-<body>
+/* --- Global Styles & Reset --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
-    <!-- Header & Navigation -->
-    <header class="navbar-wrapper">
-        <div class="container navbar">
-            <a href="index.html" class="logo">PORTFOLIO<span>.M3</span></a>
-            <ul class="nav-menu">
-                <li><a href="index.html" class="nav-link active">หน้าแรก</a></li>
-                <li><a href="profile.html" class="nav-link">ประวัติส่วนตัว</a></li>
-                <li><a href="education.html" class="nav-link">การศึกษา</a></li>
-                <li><a href="hobby.html" class="nav-link">งานอดิเรก</a></li>
-                <li><a href="contact.html" class="nav-link">ติดต่อ</a></li>
-            </ul>
-        </div>
-    </header>
+body {
+    font-family: 'Kanit', sans-serif;
+    background-color: #F8FAFC;
+    color: #1E293B;
+    line-height: 1.6;
+}
 
-    <!-- Main Content -->
-    <main class="container">
-        <!-- Hero Section -->
-        <section class="hero">
-            <div class="hero-text">
-                <span class="badge">STUDENT PORTFOLIO</span>
-                <h1>สวัสดีครับ/ค่ะ <br>ยินดีต้อนรับสู่<span>เว็บแนะนำตัวเอง</span></h1>
-                <p>เว็บไซต์นี้จัดทำขึ้นสำหรับโครงงานวิชาคอมพิวเตอร์ ชั้นมัธยมศึกษาปีที่ 3 รวบรวมประวัติ ผลงาน และความสนใจของฉัน</p>
-                <div class="hero-btns">
-                    <a href="profile.html" class="btn btn-primary">รู้จักฉันมากขึ้น</a>
-                    <a href="contact.html" class="btn btn-secondary">ติดต่อฉัน</a>
-                </div>
-            </div>
-            <div class="hero-image">
-                <img src="https://placehold.co/350x350/1976D2/FFFFFF?text=My+Profile" alt="รูปโปรไฟล์">
-            </div>
-        </section>
+/* จัดระเบียบเนื้อหาให้อยู่ตรงกลางหน้าจอ */
+.container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
 
-        <!-- Feature Cards Grid -->
-        <section class="card-grid">
-            <div class="card">
-                <div class="card-icon">👤</div>
-                <h3>ประวัติส่วนตัว</h3>
-                <p>ข้อมูลทั่วไป วันเกิด จังหวัด และตัวตนของฉัน</p>
-                <a href="profile.html" class="link-text">ดูข้อมูลเพิ่มเติม →</a>
-            </div>
-            <div class="card">
-                <div class="card-icon">🎓</div>
-                <h3>ประวัติการศึกษา</h3>
-                <p>เส้นทางการศึกษา แผนการเรียน และวิชาที่ชอบ</p>
-                <a href="education.html" class="link-text">ดูข้อมูลเพิ่มเติม →</a>
-            </div>
-            <div class="card">
-                <div class="card-icon">🎨</div>
-                <h3>งานอดิเรก</h3>
-                <p>กิจกรรมยามว่าง กีฬา เกม และสิ่งที่สนใจ</p>
-                <a href="hobby.html" class="link-text">ดูข้อมูลเพิ่มเติม →</a>
-            </div>
-        </section>
-    </main>
+/* --- Navbar Styles --- */
+.navbar-wrapper {
+    background: #FFFFFF;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
 
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container footer-content">
-            <p>&copy; 2026 Student Portfolio Project | วิชาคอมพิวเตอร์ ม.3</p>
-        </div>
-    </footer>
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 70px;
+}
 
-</body>
-</html>
+.logo {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #0D47A1;
+    text-decoration: none;
+}
+
+.logo span {
+    color: #42A5F5;
+}
+
+.nav-menu {
+    display: flex;
+    list-style: none;
+    gap: 15px;
+}
+
+.nav-link {
+    text-decoration: none;
+    color: #64748B;
+    font-weight: 500;
+    padding: 8px 16px;
+    border-radius: 20px;
+    transition: all 0.3s ease;
+}
+
+.nav-link:hover, .nav-link.active {
+    background-color: #1976D2;
+    color: #FFFFFF;
+}
+
+/* --- Hero Section --- */
+.hero {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 40px;
+    padding: 60px 0;
+}
+
+.hero-text {
+    flex: 1;
+}
+
+.badge {
+    background-color: #E3F2FD;
+    color: #1976D2;
+    padding: 4px 12px;
+    border-radius: 12px;
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+.hero-text h1 {
+    font-size: 2.5rem;
+    margin: 15px 0;
+    line-height: 1.2;
+}
+
+.hero-text h1 span {
+    color: #1976D2;
+}
+
+.hero-text p {
+    color: #64748B;
+    margin-bottom: 25px;
+    font-size: 1.05rem;
+}
+
+.hero-btns {
+    display: flex;
+    gap: 15px;
+}
+
+.btn {
+    text-decoration: none;
+    padding: 10px 24px;
+    border-radius: 25px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.btn-primary {
+    background-color: #1976D2;
+    color: #FFFFFF;
+}
+
+.btn-primary:hover {
+    background-color: #0D47A1;
+}
+
+.btn-secondary {
+    border: 2px solid #1976D2;
+    color: #1976D2;
+}
+
+.btn-secondary:hover {
+    background-color: #E3F2FD;
+}
+
+.hero-image img {
+    width: 320px;
+    height: 320px;
+    border-radius: 20px;
+    object-fit: cover;
+    box-shadow: 0 15px 30px rgba(25, 118, 210, 0.15);
+}
+
+/* --- Card Grid Section --- */
+.card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
+    margin-bottom: 60px;
+}
+
+.card {
+    background: #FFFFFF;
+    padding: 30px;
+    border-radius: 16px;
+    border: 1px solid #E2E8F0;
+    transition: all 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(13, 71, 161, 0.08);
+    border-color: #90CAF9;
+}
+
+.card-icon {
+    font-size: 2.2rem;
+    margin-bottom: 15px;
+}
+
+.card h3 {
+    color: #0D47A1;
+    margin-bottom: 10px;
+}
+
+.card p {
+    color: #64748B;
+    font-size: 0.95rem;
+    margin-bottom: 15px;
+}
+
+.link-text {
+    color: #1976D2;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+/* --- Footer --- */
+.footer {
+    background-color: #0D47A1;
+    color: #FFFFFF;
+    padding: 25px 0;
+    text-align: center;
+    font-size: 0.9rem;
+    margin-top: 40px;
+}
+
+/* --- Responsive (Mobile View) --- */
+@media (max-width: 768px) {
+    .navbar {
+        flex-direction: column;
+        height: auto;
+        padding: 15px 0;
+        gap: 15px;
+    }
+
+    .hero {
+        flex-direction: column-reverse;
+        text-align: center;
+        padding: 30px 0;
+    }
+
+    .hero-image img {
+        width: 250px;
+        height: 250px;
+    }
+
+    .hero-btns {
+        justify-content: center;
+    }
+}
